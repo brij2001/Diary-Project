@@ -1,21 +1,20 @@
-﻿using Diary.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Diary.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class Diaryeq : ContentPage
     {
-        public LoginPage()
+        public Diaryeq()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
         }
     }
 }
