@@ -16,6 +16,8 @@ namespace Diary
             MainPage = new AppShell();
         }
 
+
+
         protected override void OnStart()
         {
         }

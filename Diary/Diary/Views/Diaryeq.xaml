@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Diary.Views.Diaryeq"
-             Title="Notes">
+             Title="Diary">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add"
@@ -17,6 +17,7 @@
             <LinearItemsLayout Orientation="Vertical"
                                ItemSpacing="10" />
         </CollectionView.ItemsLayout>
+
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>

@@ -6,34 +6,74 @@ using Diary.Models;
 
 namespace Diary.Views
 {
-    
+    [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public partial class NoteEntryPage : ContentPage
     {
-        string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "notes.txt");
+        public string ItemId
+        {
+            set
+            {
+                LoadNote(value);
+            }
+        }
+
         public NoteEntryPage()
         {
             InitializeComponent();
-            if (File.Exists(_fileName))
+
+            BindingContext = new Note();
+        }
+
+        void LoadNote(string filename)
+        {
+            try
             {
-                editor.Text = File.ReadAllText(_fileName);
+                Note note = new Note
+                {
+                    Filename = filename,
+                    Text = File.ReadAllText(filename),
+                    Date = File.GetCreationTime(filename)
+                };
+                BindingContext = note;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Failed to load note.");
+            }
+        }
+
+        async void OnSaveButtonClicked(object sender, EventArgs e)
+        {
+            var note = (Note)BindingContext;
+
+            if (string.IsNullOrWhiteSpace(note.Filename))
+            {
+                // Save the file.
+                var filename = Path.Combine(App.FolderPath, $"{Path.GetRandomFileName()}.notes.txt");
+                File.WriteAllText(filename, note.Text);
+            }
+            else
+            {
+                // Update the file.
+                File.WriteAllText(note.Filename, note.Text);
             }
 
+            // Navigate back
+            await Shell.Current.GoToAsync("..");
         }
 
-        void OnSaveButtonClicked(object sender, EventArgs e)
+        async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
-            // Save the file.
-            File.WriteAllText(_fileName, editor.Text);
-        }
+            var note = (Note)BindingContext;
 
-        void OnDeleteButtonClicked(object sender, EventArgs e)
-        {
             // Delete the file.
-            if (File.Exists(_fileName))
+            if (File.Exists(note.Filename))
             {
-                File.Delete(_fileName);
+                File.Delete(note.Filename);
             }
-            editor.Text = string.Empty;
+
+            // Navigate backwards
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

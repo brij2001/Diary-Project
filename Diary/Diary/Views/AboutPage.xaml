@@ -25,7 +25,7 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Label Text="This app is made as a Project by:&#x0a;Brij Mangukiya&#x0a;Pratham Kothari&#x0a;Prathik Shetty&#x0a;" FontSize="Medium"/>
+            <Label Text="This app is made as a Project by:&#x0a;Brij Mangukiya&#x0a;Pratham Kothari&#x0a;Prathik Shetty&#x0a;" FontSize="Medium" TextColor="#573B3B"/>
             <Label Text="Under guidance of Mr.Abhijeet Pawaskar" FontSize="Medium" TextColor="#000000"/>
 
             <Button Text="Learn more"

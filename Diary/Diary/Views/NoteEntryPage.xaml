@@ -2,19 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Diary.Views.NoteEntryPage"
-             Title="Notes">
-    <!-- Layout children vertically -->
+             Title="Diary Entry">
+
     <StackLayout Margin="20">
-        <Editor x:Name="editor"
-                Placeholder="Enter your note"
+        <Editor Placeholder="Enter Note"
+                Text="{Binding Text}"
                 HeightRequest="100" />
-        <!-- Layout children in two columns -->
         <Grid ColumnDefinitions="*,*">
             <Button Text="Save"
                     Clicked="OnSaveButtonClicked" />
             <Button Grid.Column="1"
                     Text="Delete"
-                    Clicked="OnDeleteButtonClicked"/>
+                    Clicked="OnDeleteButtonClicked" />
         </Grid>
     </StackLayout>
 </ContentPage>
