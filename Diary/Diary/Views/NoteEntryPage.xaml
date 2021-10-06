@@ -5,7 +5,8 @@
              Title="Diary Entry">
 
     <StackLayout Margin="20">
-        <Editor Placeholder="Enter Note"
+        <Editor TextColor="#082B2B"
+            Placeholder="Enter Note"
                 Text="{Binding Text}"
                 HeightRequest="100" />
         <Grid ColumnDefinitions="*,*">

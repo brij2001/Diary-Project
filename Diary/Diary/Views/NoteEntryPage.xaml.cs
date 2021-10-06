@@ -24,16 +24,12 @@ namespace Diary.Views
             BindingContext = new Note();
         }
 
-        void LoadNote(string filename)
+        private async void LoadNote(string itemId)
         {
             try
             {
-                Note note = new Note
-                {
-                    Filename = filename,
-                    Text = File.ReadAllText(filename),
-                    Date = File.GetCreationTime(filename)
-                };
+                int id = Convert.ToInt32(itemId);
+                Note note = await App.Database.GetNoteAsync(id);
                 BindingContext = note;
             }
             catch (Exception)
@@ -42,38 +38,34 @@ namespace Diary.Views
             }
         }
 
-        async void OnSaveButtonClicked(object sender, EventArgs e)
+
+            
+
+        private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             var note = (Note)BindingContext;
+            note.Date = DateTime.Now;
 
-            if (string.IsNullOrWhiteSpace(note.Filename))
+            if (!string.IsNullOrWhiteSpace(note.Text))
             {
                 // Save the file.
-                var filename = Path.Combine(App.FolderPath, $"{Path.GetRandomFileName()}.notes.txt");
-                File.WriteAllText(filename, note.Text);
+                await App.Database.SaveNoteAsync(note);
             }
-            else
-            {
-                // Update the file.
-                File.WriteAllText(note.Filename, note.Text);
-            }
-
-            // Navigate back
-            await Shell.Current.GoToAsync("..");
+            await DisplayAlert("Success!", "Note save!!", "OK");
+            await Shell.Current.GoToAsync(".."); // Navigate back
         }
 
-        async void OnDeleteButtonClicked(object sender, EventArgs e)
+
+        private async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
+            bool r = await DisplayAlert("Delete?", "Would you like to delete this note?", "Yes", "No");
+            ///
+            if (r == false)
+                return;
             var note = (Note)BindingContext;
+            await App.Database.DeleteNoteAsync(note);
 
-            // Delete the file.
-            if (File.Exists(note.Filename))
-            {
-                File.Delete(note.Filename);
-            }
-
-            // Navigate backwards
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..");// Navigate back
         }
     }
 }
