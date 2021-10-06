@@ -1,17 +1,21 @@
-﻿using System;
+﻿using MvvmHelpers.Commands;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Xamarin.Forms;
+using MvvmHelpers;
+using System.Windows.Input;
 
 namespace Diary.ViewModels
 {
-    public class DiaryqeViewModel : BindableObject
+    public class DiaryqeViewModel : ViewModelBase
     {
         public DiaryqeViewModel()
         {
             IncreaseCount = new Command(OnIncrease);
+            Title = "Diary Eq";
         }
 
+       
         public System.Windows.Input.ICommand IncreaseCount { get; }
         private int count = 0;
         private string countstring = "Click Me";
@@ -25,13 +29,7 @@ namespace Diary.ViewModels
         public string CountString
         {
             get => countstring;
-            set
-            {
-                if (value == countstring)
-                    return;
-                countstring = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref countstring, value);
         }
     }
 }

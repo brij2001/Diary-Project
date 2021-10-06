@@ -10,6 +10,7 @@ namespace Diary
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(NoteEntryPage), typeof(NoteEntryPage));
         }
     }
 }
