@@ -3,14 +3,23 @@ using System;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Diary.Views;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
+using System.Threading.Tasks;
 
 namespace Diary
 {
     public partial class App : Application
     {
         private static NoteDatabase database;
-
+        public App()
+        {
+            
+                InitializeComponent();
+            MainPage = new AppShell();
+           
+        }
         public static NoteDatabase Database
         {
             get
@@ -21,11 +30,7 @@ namespace Diary
             }
         }
 
-        public App()
-        {
-            InitializeComponent();
-            MainPage = new AppShell();
-        }
+        
 
         protected override void OnStart()
         {
