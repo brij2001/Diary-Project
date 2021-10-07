@@ -59,7 +59,7 @@ namespace Diary.Views
         private async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
             bool r = await DisplayAlert("Delete?", "Would you like to delete this note?", "Yes", "No");
-            ///
+
             if (r == false)
                 return;
             var note = (Note)BindingContext;

@@ -1,15 +1,15 @@
-﻿
 using Diary.Data;
 using System;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace Diary
 {
     public partial class App : Application
     {
-        static NoteDatabase database;
+        private static NoteDatabase database;
 
         public static NoteDatabase Database
         {
@@ -20,13 +20,12 @@ namespace Diary
                 return database;
             }
         }
+
         public App()
         {
             InitializeComponent();
             MainPage = new AppShell();
         }
-
-
 
         protected override void OnStart()
         {

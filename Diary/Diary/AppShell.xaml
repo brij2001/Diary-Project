@@ -23,6 +23,9 @@
         <ShellContent Title="Notes"
                       Icon="icon_feed.png"
                       ContentTemplate="{DataTemplate views:Diaryeq}" />
+        <ShellContent Title="Calendar"
+                      Icon="calendar.png"
+                      ContentTemplate="{DataTemplate views:Calendar}" />
         <ShellContent Title="About"
                       Icon="icon_about.png"
                       ContentTemplate="{DataTemplate views:AboutPage}" />

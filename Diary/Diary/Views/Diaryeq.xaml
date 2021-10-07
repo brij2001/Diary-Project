@@ -2,15 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Diary.Views.Diaryeq"
-             Title="Diary">
+             Title="Diary"
+>
+    <ContentPage.Resources>
+        <!-- Define a visual state for the Selected state of the CollectionView -->
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="{StaticResource AppPrimaryColor}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
 
+    <!-- Add an item to the toolbar -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add"
                      Clicked="OnAddClicked" />
     </ContentPage.ToolbarItems>
 
+    <!-- Display notes -->
     <CollectionView x:Name="collectionView"
-                    Margin="20"
+                    Margin="{StaticResource PageMargin}"
                     SelectionMode="Single"
                     SelectionChanged="OnSelectionChanged">
         <CollectionView.ItemsLayout>
@@ -20,10 +41,10 @@
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <StackLayout>
+                <StackLayout Padding="0,0,0,12">
                     <Label Text="{Binding Text}"
-                           FontSize="Medium" />
-                    <Label Text="{Binding Date}"
+                           FontSize="Medium" TextColor="#082B2B" />
+                    <Label Text="{Binding Date,StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
                            TextColor="Silver"
                            FontSize="Small" />
                 </StackLayout>
