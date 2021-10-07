@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:themes = "clr-namespace:Diary.Themes;assembly=Diary"
              x:Class="Diary.App">
     <Application.Resources>
 
-        <Thickness x:Key="PageMargin">20</Thickness>
+        <Thickness x:Key="PageMargin">22</Thickness>
 
         <!-- Colors -->
         <Color x:Key="AppPrimaryColor">#1976D2</Color>
-        <Color x:Key="AppBackgroundColor">AliceBlue</Color>
+        <Color x:Key="AppBackgroundColor">#c1dcf8</Color>
         <Color x:Key="PrimaryColor">Black</Color>
         <Color x:Key="SecondaryColor">White</Color>
         <Color x:Key="TertiaryColor">Silver</Color>

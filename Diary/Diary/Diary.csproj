@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <UserSecretsId>1d2d23bf-05b8-4e93-a6ee-26f1643223f3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,8 +17,10 @@
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.3.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.3.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfSchedule" Version="19.3.0.44" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />  
+    <PackageReference Include="Xamarin.MediaGallery" Version="1.0.2.2" />
   </ItemGroup>
 
   <ItemGroup>

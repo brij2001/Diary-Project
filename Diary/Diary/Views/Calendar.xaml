@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Diary.Views.Calendar"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms">
+
     <ContentPage.Content>
+
         <Grid>
-            <syncfusion:SfCalendar x:Name="calendar" 
-                                   ViewMode="MonthView" 
-                                   ShowInlineEvents="true" 
+            <syncfusion:SfCalendar x:Name="calendar"
+                                   ViewMode="MonthView"
+                                   ShowInlineEvents="true"
                                    InlineViewMode="Inline">
             </syncfusion:SfCalendar>
         </Grid>

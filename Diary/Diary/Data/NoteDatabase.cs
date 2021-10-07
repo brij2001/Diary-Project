@@ -31,6 +31,7 @@ namespace Diary.Data
         {
             if (note.ID != 0)//to update note
             {
+
                 return database.UpdateAsync(note);
             }
             else // Save a new note.

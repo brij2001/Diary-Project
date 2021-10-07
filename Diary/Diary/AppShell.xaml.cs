@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Plugin.Fingerprint.Abstractions;
-
+using Xamarin.CommunityToolkit.Extensions;
 namespace Diary
 {
     public partial class AppShell
@@ -19,13 +19,14 @@ namespace Diary
         }
         public async void FingerPrint()
         {
-            var avail = await CrossFingerprint.Current.IsAvailableAsync();
-            if (!avail)
+            var avail = await CrossFingerprint.Current.GetAvailabilityAsync();
+            if (avail!=FingerprintAvailability.Available)
             {
-                await App.Current.MainPage.DisplayAlert("Warning", "No Biometric available", "OK.");
-
+                await this.DisplayAlert("Warning. No Biometric available!", "Your will be using this app without Authentication", "OK.");
+                InitializeComponent();
+                return;
             }
-
+            
             var authResult = await CrossFingerprint.Current.AuthenticateAsync(new AuthenticationRequestConfiguration
                 ("Auth", "Need permission to use authentication."));
 

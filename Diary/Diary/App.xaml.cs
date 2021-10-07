@@ -42,6 +42,7 @@ namespace Diary
 
         protected override void OnResume()
         {
+            
         }
     }
 }

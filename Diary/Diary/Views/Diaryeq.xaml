@@ -28,27 +28,44 @@
         <ToolbarItem Text="Add"
                      Clicked="OnAddClicked" />
     </ContentPage.ToolbarItems>
-
-    <!-- Display notes -->
+ 
     <CollectionView x:Name="collectionView"
-                    Margin="{StaticResource PageMargin}"
+                    Margin="22,0,22,0"
                     SelectionMode="Single"
                     SelectionChanged="OnSelectionChanged">
         <CollectionView.ItemsLayout>
             <LinearItemsLayout Orientation="Vertical"
-                               ItemSpacing="10" />
+                               ItemSpacing="7" />
         </CollectionView.ItemsLayout>
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <StackLayout Padding="0,0,0,12">
-                    <Label Text="{Binding Text}"
-                           FontSize="Medium" TextColor="#082B2B" />
-                    <Label Text="{Binding Date,StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
+                
+                <Frame
+                    CornerRadius="15" 
+           HorizontalOptions="Center" 
+           VerticalOptions="Start"
+           HasShadow="False"
+           IsClippedToBounds="True"
+           Padding="5">
+                    <StackLayout Padding="-7">
+                    <Image Source="splash.jpg" Aspect="AspectFill" HeightRequest="135"/>
+                    <StackLayout Padding="10,5,10,5">
+                        
+                        <Label Text="{Binding Title}"
+                           FontSize="Title"
+                           TextColor="Black"/>
+                        <Label Text="{Binding Text}"
+                           FontSize="15" TextColor="#647074" />
+                        <Label Text="{Binding Date,StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
                            TextColor="Silver"
-                           FontSize="Small" />
-                </StackLayout>
+                           FontSize="12" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
+    
+    
 </ContentPage>

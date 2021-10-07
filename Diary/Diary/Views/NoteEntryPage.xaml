@@ -2,19 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Diary.Views.NoteEntryPage"
-             Title="Diary Entry">
+             Title="Diary Entry"
+             >
 
-    <StackLayout Margin="20">
-        <Editor TextColor="#082B2B"
+    <StackLayout Margin="15">
+        
+        <Editor
+            TextColor="#082B2B"
+                Placeholder="Title"
+                PlaceholderColor="DarkGray"
+                Text="{Binding Title}"
+                FontSize="40"
+                HeightRequest="75"/>
+        <Editor AutoSize="TextChanges"
+            TextColor="#082B2B"
             Placeholder="Enter Note"
+                PlaceholderColor="DarkGray"
                 Text="{Binding Text}"
-                HeightRequest="100" />
+                
+                 />
+        
         <Grid ColumnDefinitions="*,*">
             <Button Text="Save"
                     Clicked="OnSaveButtonClicked" />
             <Button Grid.Column="1"
                     Text="Delete"
                     Clicked="OnDeleteButtonClicked" />
+            <Button Grid.Row="1"
+                    Text="Pick Image"
+                    Clicked="OnPickImageButtonClicked"/>
         </Grid>
     </StackLayout>
 </ContentPage>
