@@ -21,6 +21,7 @@ namespace Diary.Views
         {
             base.OnAppearing();
             collectionView.ItemsSource = await App.Database.GetNotesAsync();
+            
         }
         async void OnAddClicked(object sender, EventArgs e)
         {

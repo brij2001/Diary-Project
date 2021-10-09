@@ -49,8 +49,8 @@
            IsClippedToBounds="True"
            Padding="5">
                     <StackLayout Padding="-7">
-                    <Image Source="splash.jpg" Aspect="AspectFill" HeightRequest="135"/>
-                    <StackLayout Padding="10,5,10,5">
+                        <Image Source="{Binding image}" Aspect="AspectFill" HeightRequest="140"/>
+                    <StackLayout Padding="10,5">
                         
                         <Label Text="{Binding Title}"
                            FontSize="Title"

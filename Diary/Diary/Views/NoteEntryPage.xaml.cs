@@ -41,14 +41,13 @@ namespace Diary.Views
             }
         }
 
-        public string photoName;
-            
+        public string photoPathDB;
 
         private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             var note = (Note)BindingContext;
             note.Date = DateTime.Now;
-            note.image = photoName;
+            note.image = photoPathDB;
             if (!string.IsNullOrWhiteSpace(note.Text))
             {
                 // Save the file.
@@ -56,9 +55,7 @@ namespace Diary.Views
             }
             await this.DisplayToastAsync("Note Save.", 800);
             await Shell.Current.GoToAsync(".."); // Navigate back
-            
         }
-
 
         private async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
@@ -68,8 +65,27 @@ namespace Diary.Views
                 return;
             var note = (Note)BindingContext;
             await App.Database.DeleteNoteAsync(note);
-            
+
             await Shell.Current.GoToAsync("..");// Navigate back
+        }
+
+        public void SavePicture(string photoName, string documentsPath, Stream data)
+        {
+            documentsPath = Path.Combine(documentsPath, "imagesFolder");
+            Directory.CreateDirectory(documentsPath);
+
+            string filePath = Path.Combine(documentsPath, photoName);
+
+            byte[] bArray = new byte[data.Length];
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
+            {
+                using (data)
+                {
+                    data.Read(bArray, 0, (int)data.Length);
+                }
+                int length = bArray.Length;
+                fs.Write(bArray, 0, length);
+            }
         }
 
         private async void OnPickImageButtonClicked(object sender, EventArgs e)
@@ -89,17 +105,19 @@ namespace Diary.Views
             {
                 return;
             }
-            foreach(var media in results.Files)
+            foreach (var media in results.Files)
             {
+                Random rnd = new Random();
                 var fileName = media.NameWithoutExtension;
                 var ext = media.Extension;
-                photoName= (fileName.ToString() +"."+ ext.ToString());
+                string photoName = rnd.Next(50, 100).ToString();
+                photoName = photoName + (fileName.ToString() + "." + ext.ToString());
                 Console.WriteLine(photoName);
                 Console.WriteLine(path);
-                await MediaGallery.SaveAsync(MediaFileType.Image,await media.OpenReadAsync(),path);
-                
+                photoPathDB = Path.Combine(path,"imagesFolder", photoName);
+                var a = await media.OpenReadAsync();
+                SavePicture(photoName, path, await media.OpenReadAsync());
             }
-            //await App.Database.SaveNoteAsync(note);
         }
     }
 }
