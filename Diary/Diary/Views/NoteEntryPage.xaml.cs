@@ -19,14 +19,12 @@ namespace Diary.Views
                 LoadNote(value);
             }
         }
-
         public NoteEntryPage()
         {
             InitializeComponent();
 
             BindingContext = new Note();
         }
-
         private async void LoadNote(string itemId)
         {
             try
@@ -47,24 +45,23 @@ namespace Diary.Views
         {
             var note = (Note)BindingContext;
             note.Date = DateTime.Now;
-            if (note.image == null && photoPathDB != null)            
+            if (note.image == null && photoPathDB != null)
                 note.image = photoPathDB;
-            
+
             else if (note.image != null && photoPathDB != null)
                 note.image = photoPathDB;
-            
-            
+
+
             if (!string.IsNullOrWhiteSpace(note.Text))
             {
                 // Save the file.
                 await App.Database.SaveNoteAsync(note);
-                
+
             }
             photoPathDB = null;
             await this.DisplayToastAsync("Note Save.", 800);
             await Shell.Current.GoToAsync(".."); // Navigate back
         }
-
         private async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
             bool r = await DisplayAlert("Delete?", "Would you like to delete this note?", "Yes", "No");
@@ -76,7 +73,6 @@ namespace Diary.Views
 
             await Shell.Current.GoToAsync("..");// Navigate back
         }
-
         public void SavePicture(string photoName, string documentsPath, Stream data)
         {
             documentsPath = Path.Combine(documentsPath, "imagesFolder");
@@ -95,14 +91,13 @@ namespace Diary.Views
                 fs.Write(bArray, 0, length);
             }
         }
-
         private async void OnPickImageButtonClicked(object sender, EventArgs e)
         {
             var st = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
             if (st != PermissionStatus.Granted)
             {
                 await DisplayAlert("Permission Needed", "To upload an image storage access is required.", "OK");
-                var status = await Permissions.RequestAsync<Permissions.StorageRead>();
+                await Permissions.RequestAsync<Permissions.StorageRead>();
                 await Permissions.RequestAsync<Permissions.StorageWrite>();
             }
             st = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
@@ -127,15 +122,14 @@ namespace Diary.Views
                 var fileName = media.NameWithoutExtension;
                 var ext = media.Extension;
                 string photoName = rnd.Next(50, 100).ToString();
-                photoName = photoName + (fileName.ToString() + "." + ext.ToString());
+                photoName += fileName.ToString() + "." + ext.ToString();
                 Console.WriteLine(photoName);
                 Console.WriteLine(path);
                 photoPathDB = Path.Combine(path,"imagesFolder", photoName);
-                var a = await media.OpenReadAsync();
+                await media.OpenReadAsync();
                 SavePicture(photoName, path, await media.OpenReadAsync());
             }
         }
-    
         private async void OnDeleteImageButtonCliked(object sender,EventArgs e)
         {
             var note = (Note)BindingContext;

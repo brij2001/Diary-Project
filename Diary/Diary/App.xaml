@@ -63,13 +63,32 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
             </Style>
 
-            <Style TargetType="Button">
+            <Style x:Key="button_edits" TargetType="Button">
                 <Setter Property="FontSize" Value="17" />
                 <Setter Property="BackgroundColor" Value="{StaticResource AppPrimaryColor}" />
                 <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
                 <Setter Property="CornerRadius" Value="50" />
                 <Setter Property="TextTransform" Value="None" />
             </Style>
+
+            <Style x:Key="NotePageView" TargetType="StackLayout">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="Blue" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+                <Setter Property="Padding" Value="-7" />
+                <Setter Property="IsClippedToBounds" Value="True" />
+            </Style>
+
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -35,5 +35,17 @@ namespace Diary.Views
         {
             await Shell.Current.GoToAsync(nameof(NoteEntryPage));
         }
+
+        private async void OnSwipeDelete(object sender, EventArgs e)
+        {
+            bool r = await DisplayAlert("Delete?", "Would you like to delete this note?", "Yes", "No");
+
+            if (r == false)
+                return;
+            var note = (Note)BindingContext;
+            await App.Database.DeleteNoteAsync(note);
+
+            await Shell.Current.GoToAsync("..");// Navigate back
+        }
     }
 }

@@ -25,20 +25,26 @@
             ColumnDefinitions="*,*"
             ColumnSpacing="30"
             RowSpacing="30">
-            <Button Clicked="OnSaveButtonClicked" Text="Save" />
+            <Button
+                Clicked="OnSaveButtonClicked"
+                Style="{StaticResource button_edits}"
+                Text="Save" />
             <Button
                 Grid.Column="1"
                 Clicked="OnDeleteButtonClicked"
+                Style="{StaticResource button_edits}"
                 Text="Delete" />
             <Button
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 Clicked="OnPickImageButtonClicked"
+                Style="{StaticResource button_edits}"
                 Text="Pick Image" />
             <Button
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
                 Clicked="OnDeleteImageButtonCliked"
+                Style="{StaticResource button_edits}"
                 Text="Delete Image" />
         </Grid>
     </StackLayout>

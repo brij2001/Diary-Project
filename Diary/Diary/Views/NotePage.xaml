@@ -6,21 +6,8 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="Diary">
     <ContentPage.Resources>
+
         <!--  Define a visual state for the Selected state of the CollectionView  -->
-        <Style TargetType="StackLayout">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal" />
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{StaticResource AppPrimaryColor}" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
     </ContentPage.Resources>
 
     <!--  Add an item to the toolbar  -->
@@ -38,36 +25,52 @@
         </CollectionView.ItemsLayout>
 
         <CollectionView.ItemTemplate>
+
             <DataTemplate>
 
                 <Frame
-                    Padding="5"
+                    Padding="0"
                     CornerRadius="15"
-                    HasShadow="False"
+                    HasShadow="True"
                     HorizontalOptions="Center"
                     IsClippedToBounds="True"
                     VerticalOptions="Start">
-                    <StackLayout Padding="-7">
-                        <Image
-                            Aspect="AspectFill"
-                            HeightRequest="140"
-                            Source="{Binding image}" />
-                        <StackLayout Padding="10,5">
-                            <Label
-                                FontSize="Title"
-                                Text="{Binding Title}"
-                                TextColor="Black" />
-                            <Label
-                                FontSize="15"
-                                Text="{Binding Text}"
-                                TextColor="#647074" />
-                            <Label
-                                FontSize="12"
-                                Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
-                                TextColor="Silver" />
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    BackgroundColor="{StaticResource SystemRed}"
+                                    CommandParameter=""
+                                    Invoked="OnSwipeDelete"
+                                    Text="Delete" />
+                                
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <StackLayout BackgroundColor="White" Style="{StaticResource NotePageView}">
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="140"
+                                Source="{Binding image}" />
+
+                            <StackLayout Padding="15,0,15,15" IsClippedToBounds="False">
+                                <Label
+                                    FontSize="Title"
+                                    Text="{Binding Title}"
+                                    TextColor="{StaticResource PrimaryColor}" />
+                                <Label
+                                    FontSize="15"
+                                    Text="{Binding Text}"
+                                    TextColor="#647074" />
+                                <Label
+                                    FontSize="12"
+                                    Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
+                                    TextColor="Silver" />
+                            </StackLayout>
+
                         </StackLayout>
-                    </StackLayout>
+                    </SwipeView>
                 </Frame>
+
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
