@@ -38,12 +38,10 @@
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
-                                <SwipeItem
-                                    BackgroundColor="{StaticResource SystemRed}"
-                                    CommandParameter=""
-                                    Invoked="OnSwipeDelete"
-                                    Text="Delete" />
-                                
+                                <SwipeItem BackgroundColor="{StaticResource SystemRed}" Text="Delete" />
+
+                                <!--  Command="DeleteNote"  -->
+
                             </SwipeItems>
                         </SwipeView.RightItems>
                         <StackLayout BackgroundColor="White" Style="{StaticResource NotePageView}">

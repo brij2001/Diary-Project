@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Diary.Views.AuthMain"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <StackLayout
+        Margin="20"
+        Orientation="Vertical"
+        Spacing="20"
+        VerticalOptions="CenterAndExpand">
+        <Entry x:Name="UserNewEmail" Placeholder="User New Email" />
+        <Entry x:Name="UserNewPassword" Placeholder="User New Password" />
+        <Button
+            x:Name="signupbutton"
+            BackgroundColor="Black"
+            Clicked="signupbutton_Clicked"
+            Text="Signup"
+            TextColor="White" />
+        <BoxView
+            BackgroundColor="Gray"
+            HeightRequest="1"
+            HorizontalOptions="FillAndExpand" />
+        <Entry x:Name="UserLoginEmail" Placeholder="User  Email" />
+        <Entry x:Name="UserLoginPassword" Placeholder="User Password" />
+        <Button
+            x:Name="loginbutton"
+            BackgroundColor="Black"
+            Clicked="loginbutton_Clicked"
+            Text="Login"
+            TextColor="White" />
+    </StackLayout>
+</ContentPage>

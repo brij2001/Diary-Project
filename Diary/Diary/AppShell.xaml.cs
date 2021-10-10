@@ -2,6 +2,7 @@
 using Plugin.Fingerprint;
 using Xamarin.Forms;
 using Plugin.Fingerprint.Abstractions;
+using Xamarin.Essentials;
 
 namespace Diary
 {
@@ -9,6 +10,7 @@ namespace Diary
     {
         public AppShell()
         {
+            Routing.RegisterRoute("authmain", typeof(AuthMain));
             FingerPrint();
 
             //InitializeComponent();
@@ -38,6 +40,7 @@ namespace Diary
 
             }
             
+
         }
     }
 }

@@ -28,4 +28,7 @@
             ContentTemplate="{DataTemplate views:AboutPage}"
             Icon="icon_about.png" />
     </TabBar>
+    <ShellItem Route="login">
+        <ShellContent ContentTemplate="{DataTemplate views:AuthMain}" />
+    </ShellItem>
 </Shell>
