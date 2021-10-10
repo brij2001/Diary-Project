@@ -47,12 +47,20 @@ namespace Diary.Views
         {
             var note = (Note)BindingContext;
             note.Date = DateTime.Now;
-            note.image = photoPathDB;
+            if (note.image == null && photoPathDB != null)            
+                note.image = photoPathDB;
+            
+            else if (note.image != null && photoPathDB != null)
+                note.image = photoPathDB;
+            
+            
             if (!string.IsNullOrWhiteSpace(note.Text))
             {
                 // Save the file.
                 await App.Database.SaveNoteAsync(note);
+                
             }
+            photoPathDB = null;
             await this.DisplayToastAsync("Note Save.", 800);
             await Shell.Current.GoToAsync(".."); // Navigate back
         }
@@ -97,6 +105,14 @@ namespace Diary.Views
                 var status = await Permissions.RequestAsync<Permissions.StorageRead>();
                 await Permissions.RequestAsync<Permissions.StorageWrite>();
             }
+            st = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+            if (st != PermissionStatus.Granted)
+            {
+                await DisplayAlert("Permission Not Granted", "Permission wasn't granred last time." +
+                    "Go to System Settings to allow access.", "OK");
+                return;
+            }
+
 
             var results = await MediaGallery.PickAsync(1, MediaFileType.Image);
             string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -118,6 +134,14 @@ namespace Diary.Views
                 var a = await media.OpenReadAsync();
                 SavePicture(photoName, path, await media.OpenReadAsync());
             }
+        }
+    
+        private async void OnDeleteImageButtonCliked(object sender,EventArgs e)
+        {
+            var note = (Note)BindingContext;
+            note.image = null;
+            await App.Database.SaveNoteAsync(note);
+            await this.DisplayToastAsync("Image Removed", 800);
         }
     }
 }

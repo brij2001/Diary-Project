@@ -17,7 +17,7 @@ namespace Diary
         {
             
                 InitializeComponent();
-            MainPage = new AppShell();
+                MainPage = new AppShell();
            
         }
         public static NoteDatabase Database

@@ -1,10 +1,8 @@
 ﻿using Diary.Views;
 using Plugin.Fingerprint;
-using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 using Plugin.Fingerprint.Abstractions;
-using Xamarin.CommunityToolkit.Extensions;
+
 namespace Diary
 {
     public partial class AppShell

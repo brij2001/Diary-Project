@@ -1,36 +1,45 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Diary.Views.NoteEntryPage"
-             Title="Diary Entry"
-             >
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Diary.Views.NoteEntryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Diary Entry">
 
     <StackLayout Margin="15">
-        
+
         <Editor
-            TextColor="#082B2B"
-                Placeholder="Title"
-                PlaceholderColor="DarkGray"
-                Text="{Binding Title}"
-                FontSize="40"
-                HeightRequest="75"/>
-        <Editor AutoSize="TextChanges"
-            TextColor="#082B2B"
+            FontSize="40"
+            HeightRequest="75"
+            Placeholder="Title"
+            PlaceholderColor="DarkGray"
+            Text="{Binding Title}"
+            TextColor="#082B2B" />
+        <Editor
+            AutoSize="TextChanges"
             Placeholder="Enter Note"
-                PlaceholderColor="DarkGray"
-                Text="{Binding Text}"
-                
-                 />
-        
-        <Grid ColumnDefinitions="*,*">
-            <Button Text="Save"
-                    Clicked="OnSaveButtonClicked" />
-            <Button Grid.Column="1"
-                    Text="Delete"
-                    Clicked="OnDeleteButtonClicked" />
-            <Button Grid.Row="1"
-                    Text="Pick Image"
-                    Clicked="OnPickImageButtonClicked"/>
+            PlaceholderColor="DarkGray"
+            Text="{Binding Text}"
+            TextColor="#082B2B" />
+
+        <Grid
+            ColumnDefinitions="*,*"
+            ColumnSpacing="30"
+            RowSpacing="30">
+            <Button Clicked="OnSaveButtonClicked" Text="Save" />
+            <Button
+                Grid.Column="1"
+                Clicked="OnDeleteButtonClicked"
+                Text="Delete" />
+            <Button
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Clicked="OnPickImageButtonClicked"
+                Text="Pick Image" />
+            <Button
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Clicked="OnDeleteImageButtonCliked"
+                Text="Delete Image" />
         </Grid>
     </StackLayout>
 </ContentPage>
