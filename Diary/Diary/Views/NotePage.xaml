@@ -3,8 +3,10 @@
     x:Class="Diary.Views.NotePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Diary.Views"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="Diary">
+
     <ContentPage.Resources>
 
         <!--  Define a visual state for the Selected state of the CollectionView  -->
@@ -38,7 +40,10 @@
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
-                                <SwipeItem BackgroundColor="{StaticResource SystemRed}" Text="Delete" />
+                                <SwipeItem
+                                    BackgroundColor="{StaticResource SystemRed}"
+                                 
+                                    Text="Delete" />
 
                                 <!--  Command="DeleteNote"  -->
 

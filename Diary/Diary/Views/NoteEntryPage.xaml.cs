@@ -125,17 +125,33 @@ namespace Diary.Views
                 photoName += fileName.ToString() + "." + ext.ToString();
                 Console.WriteLine(photoName);
                 Console.WriteLine(path);
-                photoPathDB = Path.Combine(path,"imagesFolder", photoName);
+                photoPathDB = Path.Combine(path, "imagesFolder", photoName);
                 await media.OpenReadAsync();
                 SavePicture(photoName, path, await media.OpenReadAsync());
             }
         }
-        private async void OnDeleteImageButtonCliked(object sender,EventArgs e)
+        private async void OnDeleteImageButtonCliked(object sender, EventArgs e)
         {
             var note = (Note)BindingContext;
             note.image = null;
             await App.Database.SaveNoteAsync(note);
             await this.DisplayToastAsync("Image Removed", 800);
+        }
+
+        public Note Note
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public Data.NoteDatabase NoteDatabase
+        {
+            get => default;
+            set
+            {
+            }
         }
     }
 }

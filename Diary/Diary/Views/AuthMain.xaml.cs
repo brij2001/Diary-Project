@@ -22,7 +22,16 @@ namespace Diary.Views
             InitializeComponent();
 
         }
-        async void signupbutton_Clicked(System.Object sender, System.EventArgs e)
+
+        public AppShell AppShell
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        async void Signupbutton_Clicked(System.Object sender, System.EventArgs e)
         {
             try
             {
@@ -38,7 +47,7 @@ namespace Diary.Views
 
         }
 
-        async void loginbutton_Clicked(System.Object sender, System.EventArgs e)
+        async void Loginbutton_Clicked(System.Object sender, System.EventArgs e)
         {
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIkey));
             try
@@ -49,7 +58,7 @@ namespace Diary.Views
                 Preferences.Set("MyFirebaseRefreshToken", serializedcontnet);
                 Application.Current.MainPage = new AppShell();
             }
-            catch (Exception ex)
+            catch
             {
                 await App.Current.MainPage.DisplayAlert("Alert", "Invalid useremail or password", "OK");
             }

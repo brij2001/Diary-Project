@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Diary.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,18 +12,21 @@ namespace Diary.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NotePage : ContentPage
     {
-        public Command<Note> OnSwipeDelete { get; }
+        public Command<Note> DeleteNoteSwipe { get; }
+
+
         public NotePage()
         {
             InitializeComponent();
-          
-            //OnSwipeDelete = new Command<Note>(DeleteNote);
+
+            DeleteNoteSwipe = new Command<Note>(async x => await OnDeleteItem(x));
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             collectionView.ItemsSource = await App.Database.GetNotesAsync();
+
         }
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -30,7 +34,7 @@ namespace Diary.Views
             {
                 // Navigate to the NoteEntryPage, passing the filename as a query parameter.
                 Note note = (Note)e.CurrentSelection.FirstOrDefault();
-                await Shell.Current.GoToAsync($"{nameof(NoteEntryPage)}?{nameof(NoteEntryPage.ItemId)}={note.ID.ToString()}");
+                await Shell.Current.GoToAsync($"{nameof(NoteEntryPage)}?{nameof(NoteEntryPage.ItemId)}={note.ID}");
             }
         }
 
@@ -40,16 +44,9 @@ namespace Diary.Views
         }
 
 
-       /* public async void DeleteNote(Note note)
+        private async Task OnDeleteItem(Note note)
         {
-            bool r = await DisplayAlert("Delete?", "Would you like to delete this note?", "Yes", "No");
-
-            if (r == false)
-                return;
-            var noteD = (Note)BindingContext;
-            await App.Database.DeleteNoteAsync(noteD);
-
-            OnAppearing();
-        }*/
+            await App.Database.DeleteNoteAsync(note);
+        }
     }
 }

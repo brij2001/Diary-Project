@@ -39,7 +39,6 @@ namespace Diary
             }
         }
 
-        
 
         protected override void OnStart()
         {

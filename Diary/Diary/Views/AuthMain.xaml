@@ -9,11 +9,14 @@
         Spacing="20"
         VerticalOptions="CenterAndExpand">
         <Entry x:Name="UserNewEmail" Placeholder="User New Email" />
-        <Entry x:Name="UserNewPassword" Placeholder="User New Password" />
+        <Entry
+            x:Name="UserNewPassword"
+            IsPassword="true"
+            Placeholder="User New Password" />
         <Button
             x:Name="signupbutton"
             BackgroundColor="Black"
-            Clicked="signupbutton_Clicked"
+            Clicked="Signupbutton_Clicked"
             Text="Signup"
             TextColor="White" />
         <BoxView
@@ -21,11 +24,14 @@
             HeightRequest="1"
             HorizontalOptions="FillAndExpand" />
         <Entry x:Name="UserLoginEmail" Placeholder="User  Email" />
-        <Entry x:Name="UserLoginPassword" Placeholder="User Password" />
+        <Entry
+            x:Name="UserLoginPassword"
+            IsPassword="true"
+            Placeholder="User Password" />
         <Button
             x:Name="loginbutton"
             BackgroundColor="Black"
-            Clicked="loginbutton_Clicked"
+            Clicked="Loginbutton_Clicked"
             Text="Login"
             TextColor="White" />
     </StackLayout>
