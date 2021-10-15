@@ -4,79 +4,91 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Diary.Views"
+    xmlns:model="clr-namespace:Diary.Models"
+    xmlns:viewmodels="clr-namespace:Diary.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    Title="Diary">
+    Title="Diary"
+    x:DataType="viewmodels:NotePageViewModel">
 
-    <ContentPage.Resources>
-
-        <!--  Define a visual state for the Selected state of the CollectionView  -->
-    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewmodels:NotePageViewModel />
+    </ContentPage.BindingContext>
 
     <!--  Add an item to the toolbar  -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Clicked="OnAddClicked" Text="Add" />
+        <ToolbarItem Command="{Binding OnAddCommand}" Text="Add" />
     </ContentPage.ToolbarItems>
+    <RefreshView
+        x:DataType="viewmodels:NotePageViewModel"
+        Command="{Binding OnLoad}"
+        IsRefreshing="{Binding refreshBool, Mode=TwoWay}">
+        <CollectionView
+            x:Name="collectionView"
+            Margin="22,0,22,0"
+            ItemsSource="{Binding Notes}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="7" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
 
-    <CollectionView
-        x:Name="collectionView"
-        Margin="22,0,22,0"
-        SelectionChanged="OnSelectionChanged"
-        SelectionMode="Single">
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout ItemSpacing="7" Orientation="Vertical" />
-        </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
 
-        <CollectionView.ItemTemplate>
+                <DataTemplate>
 
-            <DataTemplate>
+                    <Frame
+                        Padding="0"
+                        x:DataType="model:Note"
+                        CornerRadius="15"
+                        HasShadow="True"
+                        HorizontalOptions="Center"
+                        IsClippedToBounds="True"
+                        VerticalOptions="Start">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        BackgroundColor="{StaticResource SystemRed}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:NotePageViewModel}}, Path=OnSwipeDelete}"
+                                        CommandParameter="{Binding .}"
+                                        Text="Delete" />
 
-                <Frame
-                    Padding="0"
-                    CornerRadius="15"
-                    HasShadow="True"
-                    HorizontalOptions="Center"
-                    IsClippedToBounds="True"
-                    VerticalOptions="Start">
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                    BackgroundColor="{StaticResource SystemRed}"
-                                 
-                                    Text="Delete" />
 
-                                <!--  Command="DeleteNote"  -->
 
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <StackLayout BackgroundColor="White" Style="{StaticResource NotePageView}">
-                            <Image
-                                Aspect="AspectFill"
-                                HeightRequest="140"
-                                Source="{Binding image}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <StackLayout BackgroundColor="White" Style="{StaticResource NotePageView}">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="140"
+                                    Source="{Binding image}" />
 
-                            <StackLayout Padding="15,0,15,15" IsClippedToBounds="False">
-                                <Label
-                                    FontSize="Title"
-                                    Text="{Binding Title}"
-                                    TextColor="{StaticResource PrimaryColor}" />
-                                <Label
-                                    FontSize="15"
-                                    Text="{Binding Text}"
-                                    TextColor="#647074" />
-                                <Label
-                                    FontSize="12"
-                                    Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
-                                    TextColor="Silver" />
+                                <StackLayout Padding="15,0,15,15" IsClippedToBounds="False">
+                                    <Label
+                                        FontSize="Title"
+                                        Text="{Binding Title}"
+                                        TextColor="{StaticResource PrimaryColor}" />
+                                    <Label
+                                        FontSize="15"
+                                        Text="{Binding Text}"
+                                        TextColor="#647074" />
+                                    <Label
+                                        FontSize="12"
+                                        Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
+                                        TextColor="Silver" />
+                                </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:NotePageViewModel}}, Path=OnSelect}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
+                        </SwipeView>
+                    </Frame>
 
-                        </StackLayout>
-                    </SwipeView>
-                </Frame>
-
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
 
 </ContentPage>

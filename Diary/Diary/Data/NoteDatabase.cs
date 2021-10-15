@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
 using Diary.Models;
+using System;
+using System.IO;
+
 
 namespace Diary.Data
 {
@@ -15,9 +19,11 @@ namespace Diary.Data
             database.CreateTableAsync<Note>().Wait();
         }
 
+
         public Task<List<Note>> GetNotesAsync()//get all notes
         {
-            return database.Table<Note>().ToListAsync();
+            
+            return database.Table<Note>().ToListAsync(); 
         }
 
         public Task<Note> GetNoteAsync(int id)//get 1  note

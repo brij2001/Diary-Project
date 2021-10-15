@@ -48,11 +48,6 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Don't have an account? " TextColor="White" />
-                        <Span
-                            FontAttributes="Bold"
-                            Text="Register"
-                            TextColor="White"
-                            TextDecorations="Underline" />
                     </FormattedString>
                 </Label.FormattedText>
                 <Label.GestureRecognizers>
