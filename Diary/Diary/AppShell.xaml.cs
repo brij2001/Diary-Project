@@ -3,6 +3,7 @@ using Plugin.Fingerprint;
 using Xamarin.Forms;
 using Plugin.Fingerprint.Abstractions;
 using Xamarin.Essentials;
+using System;
 
 namespace Diary
 {
@@ -10,36 +11,20 @@ namespace Diary
     {
         public AppShell()
         {
-            Routing.RegisterRoute("authmain", typeof(AuthMain));
-            FingerPrint();
+            Routing.RegisterRoute("AuthMain", typeof(AuthMain)); 
+            Routing.RegisterRoute("NotePage", typeof(NotePage));
+            Routing.RegisterRoute("NoteEntryPage", typeof(NoteEntryPage));
+            Routing.RegisterRoute("Register", typeof(Register));
+            //FingerPrint();
 
-            //InitializeComponent();
-            Routing.RegisterRoute(nameof(NoteEntryPage), typeof(NoteEntryPage));
+            InitializeComponent();
+            
 
         }
-
-        public AboutPage AboutPage
+        private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public NotePage NotePage
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Calendar Calendar
-        {
-            get => default;
-            set
-            {
-            }
+            Preferences.Set("MyFirebaseRefreshToken", "");
+            await Shell.Current.GoToAsync("AuthMain");
         }
 
         public async void FingerPrint()

@@ -2,37 +2,63 @@
 <ContentPage
     x:Class="Diary.Views.AuthMain"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <StackLayout
-        Margin="20"
-        Orientation="Vertical"
-        Spacing="20"
-        VerticalOptions="CenterAndExpand">
-        <Entry x:Name="UserNewEmail" Placeholder="User New Email" />
-        <Entry
-            x:Name="UserNewPassword"
-            IsPassword="true"
-            Placeholder="User New Password" />
-        <Button
-            x:Name="signupbutton"
-            BackgroundColor="Black"
-            Clicked="Signupbutton_Clicked"
-            Text="Signup"
-            TextColor="White" />
-        <BoxView
-            BackgroundColor="Gray"
-            HeightRequest="1"
-            HorizontalOptions="FillAndExpand" />
-        <Entry x:Name="UserLoginEmail" Placeholder="User  Email" />
-        <Entry
-            x:Name="UserLoginPassword"
-            IsPassword="true"
-            Placeholder="User Password" />
-        <Button
-            x:Name="loginbutton"
-            BackgroundColor="Black"
-            Clicked="Loginbutton_Clicked"
-            Text="Login"
-            TextColor="White" />
-    </StackLayout>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Login"
+    BackgroundColor="{StaticResource SystemGray4Dark}"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="10,0,10,0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center">
+            <Image
+                HeightRequest="400"
+                HorizontalOptions="CenterAndExpand"
+                Source="InstaGoalsLogo2DarkGray.jpg"
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="400" />
+            <Entry
+                x:Name="loginUsernameEntry"
+                BackgroundColor="{StaticResource SystemGray4Dark}"
+                Placeholder="E-Mail"
+                PlaceholderColor="LightGray"
+                Text="{Binding Email}"
+                TextColor="White" />
+            <Entry
+                x:Name="loginPasswordEntry"
+                BackgroundColor="{StaticResource SystemGray4Dark}"
+                IsPassword="True"
+                Placeholder="Password"
+                PlaceholderColor="LightGray"
+                Text="{Binding Password}"
+                TextColor="White" />
+            <Button
+                BackgroundColor="Transparent"
+                BorderColor="White"
+                BorderWidth="1.5"
+                Command="{Binding LoginCommand}"
+                CornerRadius="50"
+                Text="Login"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Don't have an account? " TextColor="White" />
+                        <Span
+                            FontAttributes="Bold"
+                            Text="Register"
+                            TextColor="White"
+                            TextDecorations="Underline" />
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="RegisterTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

@@ -25,7 +25,7 @@ namespace Diary
            }
             else
            {
-               MainPage = new AuthMain();
+               MainPage = new NavigationPage(new AuthMain());
            }
 
         }

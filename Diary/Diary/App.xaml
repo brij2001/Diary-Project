@@ -87,7 +87,9 @@
                 <Setter Property="Padding" Value="-7" />
                 <Setter Property="IsClippedToBounds" Value="True" />
             </Style>
-
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackground" Value="Black" />
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

@@ -54,7 +54,6 @@ namespace Diary.Views
         {
             Preferences.Remove("MyFirebaseRefreshToken");
             App.Current.MainPage = new NavigationPage(new AuthMain());
-
         }
     }
 }

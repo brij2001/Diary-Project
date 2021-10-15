@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
+using Diary.ViewModels;
 
 namespace Diary.Views
 {
@@ -20,48 +21,14 @@ namespace Diary.Views
 
         {
             InitializeComponent();
-
+            this.BindingContext = new AuthMainViewModel();
         }
 
-        public AppShell AppShell
-        {
-            get => default;
-            set
-            {
-            }
-        }
 
-        async void Signupbutton_Clicked(System.Object sender, System.EventArgs e)
-        {
-            try
-            {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIkey));
-                var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(UserNewEmail.Text, UserNewPassword.Text);
-                string gettoken = auth.FirebaseToken;
-                await App.Current.MainPage.DisplayAlert("Alert", "Registered Successfully", "Ok");
-            }
-            catch (Exception ex)
-            {
-                await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
-            }
 
-        }
-
-        async void Loginbutton_Clicked(System.Object sender, System.EventArgs e)
+        private void RegisterTapped(object sender, EventArgs e)
         {
-            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIkey));
-            try
-            {
-                var auth = await authProvider.SignInWithEmailAndPasswordAsync(UserLoginEmail.Text, UserLoginPassword.Text);
-                var content = await auth.GetFreshAuthAsync();
-                var serializedcontnet = JsonConvert.SerializeObject(content);
-                Preferences.Set("MyFirebaseRefreshToken", serializedcontnet);
-                Application.Current.MainPage = new AppShell();
-            }
-            catch
-            {
-                await App.Current.MainPage.DisplayAlert("Alert", "Invalid useremail or password", "OK");
-            }
+            Navigation.PushAsync(new Register());
         }
     }
 }

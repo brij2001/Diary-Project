@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Diary.Views.Register"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Register"
+    BackgroundColor="#222222">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10,20,20,10">
+                <Entry
+                    x:Name="UserNewEmail"
+                    FontSize="16"
+                    Placeholder="Email"
+                    PlaceholderColor="LightGray"
+                    Text="{Binding NewEmail}"
+                    TextColor="White" />
+                <Entry
+                    x:Name="UserNewPassword"
+                    FontSize="16"
+                    IsPassword="True"
+                    Placeholder="Password"
+                    PlaceholderColor="LightGray"
+                    Text="{Binding NewPassword}"
+                    TextColor="White" />
+                <Entry
+                    x:Name="confirmPasswordRegister"
+                    FontSize="16"
+                    IsPassword="True"
+                    Placeholder="Confirm Password"
+                    PlaceholderColor="LightGray"
+                    Text="{Binding ConfirmPassword}"
+                    TextColor="White" />
+                <Button
+                    BackgroundColor="Transparent"
+                    BorderColor="White"
+                    BorderWidth="1.5"
+                    Command="{Binding RegisterCommand}"
+                    CornerRadius="50"
+                    Text="Register"
+                    TextColor="White"
+                    WidthRequest="100" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
