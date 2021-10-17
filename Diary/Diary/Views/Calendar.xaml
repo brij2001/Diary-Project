@@ -1,17 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Diary.Views.Calendar"
-             xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms">
-
+<ContentPage
+    x:Class="Diary.Views.Calendar"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sf="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+    xmlns:viewmodels="clr-namespace:Diary.ViewModels">
     <ContentPage.Content>
 
         <Grid>
-            <syncfusion:SfCalendar x:Name="calendar"
-                                   ViewMode="MonthView"
-                                   ShowInlineEvents="true"
-                                   InlineViewMode="Inline">
-            </syncfusion:SfCalendar>
+            <sf:SfCalendar
+                x:Name="calendar"
+                DataSource="{Binding CalendarInlineEvents}"
+                InlineViewMode="Inline"
+                MaximumEventIndicatorCount="1"
+                OnInlineLoaded="calendar_OnInlineLoaded"
+                ShowInlineEvents="true"
+                ViewMode="MonthView">
+                <sf:SfCalendar.BindingContext>
+                    <viewmodels:CalendarViewModel />
+                </sf:SfCalendar.BindingContext>
+            </sf:SfCalendar>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Diary.ViewModels
 {
-    class AboutPageViewModel
+    class AboutPageViewModel:BaseViewModel
     {
+
     }
 }

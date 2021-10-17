@@ -13,21 +13,18 @@ namespace Diary.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NotePage : ContentPage
     {
-        public Command<Note> DeleteNoteSwipe { get; }
+        NotePageViewModel _vm;
 
-        NotePageViewModel vm;
         public NotePage()
         {
             InitializeComponent();
-            vm=new NotePageViewModel();
-            
+            BindingContext = _vm = new NotePageViewModel();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-           
+            _vm.OnAppearing();
         }
-        
     }
 }

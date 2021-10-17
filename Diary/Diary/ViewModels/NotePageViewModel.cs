@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace Diary.ViewModels
 {
-    internal class NotePageViewModel : BaseViewModel
+    public class NotePageViewModel : BaseViewModel
     {
         public MvvmHelpers.Commands.Command OnAddCommand { get; }
         public MvvmHelpers.Commands.Command<Note> OnSelect { get; }
@@ -31,7 +31,7 @@ namespace Diary.ViewModels
         {
             IsBusy = true;
         }
-       protected async Task OnLoadPage()
+       public async Task OnLoadPage()
         {
             IsBusy = true;
             try

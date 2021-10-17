@@ -3,7 +3,9 @@
     x:Class="Diary.Views.NoteEntryPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Diary Entry">
+    Title="Diary Entry"
+    BackgroundColor="{StaticResource SystemGray4Dark}"
+    Shell.PresentationMode="ModalAnimated">
 
     <StackLayout Margin="15">
 
@@ -47,5 +49,6 @@
                 Style="{StaticResource button_edits}"
                 Text="Delete Image" />
         </Grid>
+        <Label Text="Image" />
     </StackLayout>
 </ContentPage>

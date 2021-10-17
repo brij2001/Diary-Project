@@ -8,11 +8,9 @@
     xmlns:viewmodels="clr-namespace:Diary.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="Diary"
-    x:DataType="viewmodels:NotePageViewModel">
+    x:DataType="viewmodels:NotePageViewModel"
+    BackgroundColor="{StaticResource SystemGray4Dark}">
 
-    <ContentPage.BindingContext>
-        <viewmodels:NotePageViewModel />
-    </ContentPage.BindingContext>
 
     <!--  Add an item to the toolbar  -->
     <ContentPage.ToolbarItems>
@@ -21,7 +19,7 @@
     <RefreshView
         x:DataType="viewmodels:NotePageViewModel"
         Command="{Binding OnLoad}"
-        IsRefreshing="{Binding refreshBool, Mode=TwoWay}">
+        IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView
             x:Name="collectionView"
             Margin="22,0,22,0"

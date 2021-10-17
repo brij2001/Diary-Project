@@ -137,21 +137,5 @@ namespace Diary.Views
             await App.Database.SaveNoteAsync(note);
             await this.DisplayToastAsync("Image Removed", 800);
         }
-
-        public Note Note
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public Data.NoteDatabase NoteDatabase
-        {
-            get => default;
-            set
-            {
-            }
-        }
     }
 }

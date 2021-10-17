@@ -16,8 +16,8 @@ namespace Diary
         private static NoteDatabase database;
         public App()
         {
-            
-                InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTIwMzk2QDMxMzkyZTMzMmUzMEFtUHlVZjdzK3dwZFZzL1M3VUVFa2R4YjdlSlg2d3h6L2dNakxNSWtpcWc9");
+            InitializeComponent();
             //MainPage = new AppShell();
             if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", "")))
            {

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Diary.ViewModels
 {
-    internal class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         private bool isBusy = false;
 
