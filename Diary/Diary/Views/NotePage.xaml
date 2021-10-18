@@ -9,7 +9,8 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="Diary"
     x:DataType="viewmodels:NotePageViewModel"
-    BackgroundColor="{StaticResource SystemGray4Dark}">
+    BackgroundColor="{AppThemeBinding Dark={StaticResource SystemGray4Dark},
+                                      Light={StaticResource SystemGray4}}">
 
 
     <!--  Add an item to the toolbar  -->
@@ -34,8 +35,10 @@
                 <DataTemplate>
 
                     <Frame
-                        Padding="0"
+                        Padding="10,10,10,10"
                         x:DataType="model:Note"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                          Light={StaticResource CardBackground}}"
                         CornerRadius="15"
                         HasShadow="True"
                         HorizontalOptions="Center"
@@ -54,7 +57,7 @@
 
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <StackLayout BackgroundColor="White" Style="{StaticResource NotePageView}">
+                            <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackground}}" Style="{StaticResource NotePageView}">
                                 <Image
                                     Aspect="AspectFill"
                                     HeightRequest="140"
@@ -63,14 +66,15 @@
                                 <StackLayout Padding="15,0,15,15" IsClippedToBounds="False">
                                     <Label
                                         FontSize="Title"
-                                        Text="{Binding Title}"
-                                        TextColor="{StaticResource PrimaryColor}" />
+                                        Style="{StaticResource BaseLabel}"
+                                        Text="{Binding Title}" />
                                     <Label
                                         FontSize="15"
-                                        Text="{Binding Text}"
-                                        TextColor="#647074" />
+                                        Style="{StaticResource BaseLabel}"
+                                        Text="{Binding Text}" />
                                     <Label
                                         FontSize="12"
+                                        Style="{StaticResource BaseLabel}"
                                         Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
                                         TextColor="Silver" />
                                 </StackLayout>

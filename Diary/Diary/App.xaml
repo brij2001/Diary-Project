@@ -90,7 +90,40 @@
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackground" Value="Black" />
             </Style>
+            <Style x:Key="BaseRefreshView" TargetType="RefreshView">
+                <Setter Property="RefreshColor" Value="{StaticResource SystemBlue}" />
+            </Style>
 
+            <Style x:Key="BaseLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}" />
+            </Style>
+
+            <Style
+                x:Key="LabelMicro"
+                BasedOn="{StaticResource BaseLabel}"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="Micro" />
+            </Style>
+            <Style
+                x:Key="LabelSmall"
+                BasedOn="{StaticResource BaseLabel}"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+
+            <Style
+                x:Key="LabelMedium"
+                BasedOn="{StaticResource BaseLabel}"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+
+            <Style
+                x:Key="LabelLarge"
+                BasedOn="{StaticResource BaseLabel}"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="Large" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

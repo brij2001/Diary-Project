@@ -3,10 +3,13 @@
     x:Class="Diary.Views.NoteEntryPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:Diary.ViewModels"
     Title="Diary Entry"
     BackgroundColor="{StaticResource SystemGray4Dark}"
     Shell.PresentationMode="ModalAnimated">
-
+    <ContentPage.BindingContext>
+        <viewmodel:NoteEntryPageViewModel />
+    </ContentPage.BindingContext>
     <StackLayout Margin="15">
 
         <Editor
@@ -14,13 +17,13 @@
             HeightRequest="75"
             Placeholder="Title"
             PlaceholderColor="DarkGray"
-            Text="{Binding Title}"
+            Text="{Binding title}"
             TextColor="#082B2B" />
         <Editor
             AutoSize="TextChanges"
             Placeholder="Enter Note"
             PlaceholderColor="DarkGray"
-            Text="{Binding Text}"
+            Text="{Binding text}"
             TextColor="#082B2B" />
 
         <Grid
@@ -28,24 +31,24 @@
             ColumnSpacing="30"
             RowSpacing="30">
             <Button
-                Clicked="OnSaveButtonClicked"
+                Command="{Binding OnSaveCommand}"
                 Style="{StaticResource button_edits}"
                 Text="Save" />
             <Button
                 Grid.Column="1"
-                Clicked="OnDeleteButtonClicked"
+                Command="{Binding OnDeleteCommand}"
                 Style="{StaticResource button_edits}"
                 Text="Delete" />
             <Button
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
-                Clicked="OnPickImageButtonClicked"
+                Command="{Binding PickImageCommand}"
                 Style="{StaticResource button_edits}"
                 Text="Pick Image" />
             <Button
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
-                Clicked="OnDeleteImageButtonCliked"
+                Command="{Binding DeleteImageCommand}"
                 Style="{StaticResource button_edits}"
                 Text="Delete Image" />
         </Grid>

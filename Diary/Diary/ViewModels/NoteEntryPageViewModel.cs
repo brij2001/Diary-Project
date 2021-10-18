@@ -9,6 +9,9 @@ using Xamarin.Forms.Xaml;
 using MvvmHelpers.Commands;
 using System.Collections.ObjectModel;
 using System.IO;
+using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.Essentials;
+using NativeMedia;
 
 namespace Diary.ViewModels
 {
@@ -16,17 +19,35 @@ namespace Diary.ViewModels
     public class NoteEntryPageViewModel : BaseViewModel
     {
         public MvvmHelpers.Commands.Command OnSaveCommand { get; }
+        public MvvmHelpers.Commands.Command OnDeleteCommand { get; }
+        public MvvmHelpers.Commands.Command PickImageCommand { get; }
+        public MvvmHelpers.Commands.Command DeleteImageCommand { get; }
+
         public NoteEntryPageViewModel()
         {
-
+            OnSaveCommand = new MvvmHelpers.Commands.Command(OnSaveButtonClicked);
+            OnDeleteCommand = new MvvmHelpers.Commands.Command(OnDeleteButtonClicked);
+            PickImageCommand = new MvvmHelpers.Commands.Command(OnPickImageButtonClicked);
+            DeleteImageCommand = new MvvmHelpers.Commands.Command(OnDeleteImageButtonCliked);
         }
-        public Note note { get; set; }
-        public string title { get; set; }
-        public string text { get; set; }
+
+        private string _ITEMID;
+        private string _TITLE;
+        private string _TEXT;
+        private DateTime _DATETIME;
+        private string _IMAGE;
+        public Note note = new Note();
+        public DateTime datetime { get => _DATETIME; set => SetProperty(ref _DATETIME, value); }
+        public string title { get => _TITLE; set => SetProperty(ref _TITLE, value); }
+        public string text { get => _TEXT; set => SetProperty(ref _TEXT, value); }
+        public string image { get => _IMAGE; set => SetProperty(ref _IMAGE, value); }
+
         public string ItemId
         {
+            get { return _ITEMID; }
             set
             {
+                _ITEMID = value;
                 LoadNote(value);
             }
         }
@@ -36,9 +57,11 @@ namespace Diary.ViewModels
             try
             {
                 int id = Convert.ToInt32(itemId);
-                Note note1 = await App.Database.GetNoteAsync(id);
+                var note1 = await App.Database.GetNoteAsync(id);
                 title = note1.Title;
                 text = note1.Text;
+                datetime = note1.Date;
+                image = note1.image;
             }
             catch (Exception)
             {
@@ -48,101 +71,108 @@ namespace Diary.ViewModels
 
         public string photoPathDB;
 
-    //    private async void OnSaveButtonClicked(object sender, EventArgs e)
-    //    {
-    //        var note = (Note)BindingContext;
-    //        note.Date = DateTime.Now;
-    //        if (note.image == null && photoPathDB != null)
-    //            note.image = photoPathDB;
-    //        else if (note.image != null && photoPathDB != null)
-    //            note.image = photoPathDB;
+        private async void OnSaveButtonClicked()
+        {
+            note.ID = Convert.ToInt32(ItemId);
+            note.Date = datetime;
+            if (ItemId != null && (await Application.Current.MainPage.DisplayAlert("Update Date?", "Do you want to update the date and time of the entry?", "Yes", "No")) == true)
+                note.Date = DateTime.Now;
+            note.Text = text;
+            note.Title = title;
+            note.image = image;
 
-    //        if (!string.IsNullOrWhiteSpace(note.Text))
-    //        {
-    //            // Save the file.
-    //            await App.Database.SaveNoteAsync(note);
-    //        }
-    //        photoPathDB = null;
-    //        await this.DisplayToastAsync("Note Save.", 800);
-    //        await Shell.Current.GoToAsync(".."); // Navigate back
-    //    }
+            if (note.image == null && photoPathDB != null)
+                note.image = photoPathDB;
+            else if (note.image != null && photoPathDB != null)
+                note.image = photoPathDB;
 
-    //    private async void OnDeleteButtonClicked(object sender, EventArgs e)
-    //    {
-    //        bool r = await DisplayAlert("Delete?", "Would you like to delete this note?", "Yes", "No");
+            if (!string.IsNullOrWhiteSpace(note.Text))
+            {
+                // Save the file.
+                await App.Database.SaveNoteAsync(note);
+            }
+            photoPathDB = null;
+            _ = Application.Current.MainPage.DisplayToastAsync("Note Saved.", 800);
+            await Shell.Current.GoToAsync(".."); // Navigate back
+        }
 
-    //        if (r == false)
-    //            return;
-    //        var note = (Note)BindingContext;
-    //        await App.Database.DeleteNoteAsync(note);
+        private async void OnDeleteButtonClicked()
+        {
+            bool r = await Application.Current.MainPage.DisplayAlert("Delete?", "Would you like to delete this note?", "Yes", "No");
 
-    //        await Shell.Current.GoToAsync("..");// Navigate back
-    //    }
+            if (r == false)
+                return;
 
-    //    public void SavePicture(string photoName, string documentsPath, Stream data)
-    //    {
-    //        documentsPath = Path.Combine(documentsPath, "imagesFolder");
-    //        Directory.CreateDirectory(documentsPath);
+            note.ID = Convert.ToInt32(ItemId);
+            await App.Database.DeleteNoteAsync(note);
 
-    //        string filePath = Path.Combine(documentsPath, photoName);
+            await Shell.Current.GoToAsync("..");// Navigate back
+        }
 
-    //        byte[] bArray = new byte[data.Length];
-    //        using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
-    //        {
-    //            using (data)
-    //            {
-    //                data.Read(bArray, 0, (int)data.Length);
-    //            }
-    //            int length = bArray.Length;
-    //            fs.Write(bArray, 0, length);
-    //        }
-    //    }
+        public void SavePicture(string photoName, string documentsPath, Stream data)
+        {
+            documentsPath = Path.Combine(documentsPath, "imagesFolder");
+            Directory.CreateDirectory(documentsPath);
 
-    //    private async void OnPickImageButtonClicked(object sender, EventArgs e)
-    //    {
-    //        var st = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
-    //        if (st != PermissionStatus.Granted)
-    //        {
-    //            await DisplayAlert("Permission Needed", "To upload an image storage access is required.", "OK");
-    //            await Permissions.RequestAsync<Permissions.StorageRead>();
-    //            await Permissions.RequestAsync<Permissions.StorageWrite>();
-    //        }
-    //        st = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
-    //        if (st != PermissionStatus.Granted)
-    //        {
-    //           await DisplayAlert("Permission Not Granted", "Permission wasn't granred last time." +
-    //                "Go to System Settings to allow access.", "OK");
-    //            return;
-    //        }
+            string filePath = Path.Combine(documentsPath, photoName);
 
-    //        var results = await MediaGallery.PickAsync(1, MediaFileType.Image);
-    //        string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            byte[] bArray = new byte[data.Length];
+            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
+            {
+                using (data)
+                {
+                    data.Read(bArray, 0, (int)data.Length);
+                }
+                int length = bArray.Length;
+                fs.Write(bArray, 0, length);
+            }
+        }
 
-    //        if (results.Files == null)
-    //        {
-    //            return;
-    //        }
-    //        foreach (var media in results.Files)
-    //        {
-    //            Random rnd = new Random();
-    //            var fileName = media.NameWithoutExtension;
-    //            var ext = media.Extension;
-    //            string photoName = rnd.Next(50, 100).ToString();
-    //            photoName += fileName.ToString() + "." + ext.ToString();
-    //            Console.WriteLine(photoName);
-    //            Console.WriteLine(path);
-    //            photoPathDB = Path.Combine(path, "imagesFolder", photoName);
-    //            await media.OpenReadAsync();
-    //            SavePicture(photoName, path, await media.OpenReadAsync());
-    //        }
-    //    }
+        private async void OnPickImageButtonClicked()
+        {
+            var st = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+            if (st != PermissionStatus.Granted)
+            {
+                await Application.Current.MainPage.DisplayAlert("Permission Needed", "To upload an image storage access is required.", "OK");
+                await Permissions.RequestAsync<Permissions.StorageRead>();
+                await Permissions.RequestAsync<Permissions.StorageWrite>();
+            }
+            st = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+            if (st != PermissionStatus.Granted)
+            {
+                await Application.Current.MainPage.DisplayAlert("Permission Not Granted", "Permission wasn't granred last time." +
+                     "Go to System Settings to allow access.", "OK");
+                return;
+            }
 
-    //    private async void OnDeleteImageButtonCliked(object sender, EventArgs e)
-    //    {
-    //        var note = (Note)BindingContext;
-    //        note.image = null;
-    //        await App.Database.SaveNoteAsync(note);
-    //        await this.DisplayToastAsync("Image Removed", 800);
-    //    }
+            var results = await MediaGallery.PickAsync(1, MediaFileType.Image);
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+            if (results.Files == null)
+            {
+                return;
+            }
+            foreach (var media in results.Files)
+            {
+                Random rnd = new Random();
+                var fileName = media.NameWithoutExtension;
+                var ext = media.Extension;
+                string photoName = rnd.Next(50, 100).ToString();
+                photoName += fileName.ToString() + "." + ext.ToString();
+                Console.WriteLine(photoName);
+                Console.WriteLine(path);
+                photoPathDB = Path.Combine(path, "imagesFolder", photoName);
+                await media.OpenReadAsync();
+                SavePicture(photoName, path, await media.OpenReadAsync());
+            }
+        }
+
+        private async void OnDeleteImageButtonCliked()
+        {
+            note.ID = Convert.ToInt32(ItemId);
+            note.image = null;
+            await App.Database.SaveNoteAsync(note);
+            await Application.Current.MainPage.DisplayToastAsync("Image Removed", 800);
+        }
     }
 }

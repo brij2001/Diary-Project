@@ -28,7 +28,8 @@ namespace Diary.Views
                 ListViewCollection.Add(new ViewModel() { Subject = ((args.Appointments as CalendarEventCollection)[i] as CalendarInlineEvent).Subject, ColorInline = ((args.Appointments as CalendarEventCollection)[i] as CalendarInlineEvent).Color });
 
             listView.ItemsSource = ListViewCollection;
-            listView.ItemTemplate = new DataTemplate(() => {
+            listView.ItemTemplate = new DataTemplate(() =>
+            {
 
                 ViewCell viewCell = new ViewCell();
 

@@ -55,7 +55,7 @@ namespace Diary.ViewModels
 
         public async void OnSelectionChanged(Note note)
         {
-            await Shell.Current.GoToAsync($"{nameof(NoteEntryPage)}?{nameof(NoteEntryPage.ItemId)}={note.ID}");
+            await Shell.Current.GoToAsync($"{nameof(NoteEntryPage)}?{nameof(NoteEntryPageViewModel.ItemId)}={note.ID}");
         }
 
         private async void OnAddClicked()

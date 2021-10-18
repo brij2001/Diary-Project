@@ -15,13 +15,14 @@ namespace Diary.Views
     public partial class AboutPage : ContentPage
     {
         public string WebAPIkey = "AIzaSyDDUupHlpP_0MmTg58iJQXTUsdQRcfZp1g";
+
         public AboutPage()
         {
             InitializeComponent();
             GetProfileInformationAndRefreshToken();
         }
 
-        async void OnButtonClicked(object sender, EventArgs e)
+        private async void OnButtonClicked(object sender, EventArgs e)
         {
             await Launcher.OpenAsync("https://tcsc.org.in/");
         }
@@ -38,19 +39,15 @@ namespace Diary.Views
                 Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(RefreshedContent));
                 //Now lets grab user information
                 MyUserName.Text = savedfirebaseauth.User.Email;
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 await App.Current.MainPage.DisplayAlert("Alert", "Oh no !  Token expired", "OK");
             }
-
-
-
         }
 
-        void Logout_Clicked(System.Object sender, System.EventArgs e)
+        private void Logout_Clicked(System.Object sender, System.EventArgs e)
         {
             Preferences.Remove("MyFirebaseRefreshToken");
             App.Current.MainPage = new NavigationPage(new AuthMain());
