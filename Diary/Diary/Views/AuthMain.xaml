@@ -6,7 +6,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Login"
-    BackgroundColor="{StaticResource SystemGray4Dark}"
+    BackgroundColor="{StaticResource Amoled}"
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout
@@ -21,14 +21,14 @@
                 WidthRequest="400" />
             <Entry
                 x:Name="loginUsernameEntry"
-                BackgroundColor="{StaticResource SystemGray4Dark}"
+                BackgroundColor="{StaticResource Amoled}"
                 Placeholder="E-Mail"
                 PlaceholderColor="LightGray"
                 Text="{Binding Email}"
                 TextColor="White" />
             <Entry
                 x:Name="loginPasswordEntry"
-                BackgroundColor="{StaticResource SystemGray4Dark}"
+                BackgroundColor="{StaticResource Amoled}"
                 IsPassword="True"
                 Placeholder="Password"
                 PlaceholderColor="LightGray"

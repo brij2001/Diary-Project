@@ -30,7 +30,7 @@ namespace Diary.ViewModels
             PickImageCommand = new MvvmHelpers.Commands.Command(OnPickImageButtonClicked);
             DeleteImageCommand = new MvvmHelpers.Commands.Command(OnDeleteImageButtonCliked);
         }
-
+       
         private string _ITEMID;
         private string _TITLE;
         private string _TEXT;
@@ -75,6 +75,8 @@ namespace Diary.ViewModels
         {
             note.ID = Convert.ToInt32(ItemId);
             note.Date = datetime;
+            if (ItemId == null)
+                note.Date = DateTime.Now;
             if (ItemId != null && (await Application.Current.MainPage.DisplayAlert("Update Date?", "Do you want to update the date and time of the entry?", "Yes", "No")) == true)
                 note.Date = DateTime.Now;
             note.Text = text;
@@ -170,6 +172,9 @@ namespace Diary.ViewModels
         private async void OnDeleteImageButtonCliked()
         {
             note.ID = Convert.ToInt32(ItemId);
+            note.Date = datetime;
+            note.Text = text;
+            note.Title = title;
             note.image = null;
             await App.Database.SaveNoteAsync(note);
             await Application.Current.MainPage.DisplayToastAsync("Image Removed", 800);

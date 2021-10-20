@@ -18,6 +18,8 @@ namespace Diary.ViewModels
         public MvvmHelpers.Commands.Command<Note> OnSwipeDelete { get; }
         public MvvmHelpers.Commands.Command OnLoad { get; }
         public ObservableCollection<Note> Notes { get; }
+        public bool empty { get { return _empty; } set { SetProperty(ref _empty, value); } }
+        private bool _empty = true;
 
         public NotePageViewModel()
         {
@@ -27,19 +29,23 @@ namespace Diary.ViewModels
             Notes = new ObservableCollection<Note>();
             OnLoad = new MvvmHelpers.Commands.Command(async () => await OnLoadPage());
         }
+
         public void OnAppearing()
         {
             IsBusy = true;
         }
-       public async Task OnLoadPage()
+
+        public async Task OnLoadPage()
         {
             IsBusy = true;
             try
             {
                 Notes.Clear();
                 var items = await App.Database.GetNotesAsync();
+                empty = true;
                 foreach (var t in items)
                 {
+                    empty = false;
                     Notes.Add(t);
                 }
             }

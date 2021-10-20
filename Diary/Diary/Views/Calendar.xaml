@@ -10,12 +10,33 @@
         <Grid>
             <sf:SfCalendar
                 x:Name="calendar"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
+                                                  Light=white}"
                 DataSource="{Binding CalendarInlineEvents}"
                 InlineViewMode="Inline"
                 MaximumEventIndicatorCount="1"
                 OnInlineLoaded="calendar_OnInlineLoaded"
                 ShowInlineEvents="true"
+                ShowLeadingAndTrailingDays="False"
                 ViewMode="MonthView">
+                <sf:SfCalendar.MonthViewSettings>
+                    <sf:MonthViewSettings
+                        CurrentMonthBackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
+                                                                      Light=White}"
+                        CurrentMonthTextColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                                                Light={StaticResource TextColor}}"
+                        DayHeaderBackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
+                                                                   Light=white}"
+                        DayHeaderFontAttributes="Bold"
+                        DayHeaderTextColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                                             Light={StaticResource TextColor}}"
+                        HeaderBackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
+                                                                Light=white}"
+                        HeaderFontFamily="manrope"
+                        HeaderTextColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                                          Light={StaticResource TextColor}}"
+                        SelectionRadius="27" />
+                </sf:SfCalendar.MonthViewSettings>
                 <sf:SfCalendar.BindingContext>
                     <viewmodels:CalendarViewModel />
                 </sf:SfCalendar.BindingContext>

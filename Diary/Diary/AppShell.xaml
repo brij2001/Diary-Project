@@ -7,9 +7,9 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Dark={StaticResource AppPrimaryColorDark}, Light={StaticResource AppPrimaryColor}}" />
+                <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}" />
+                <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="White" />
@@ -32,14 +32,14 @@
                 ApplyToDerivedTypes="True"
                 Class="FlyoutItemLayoutStyle"
                 TargetType="Layout">
-                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="white" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="White" />
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                    <Setter Property="BackgroundColor" Value="white" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Amoled}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
@@ -65,7 +65,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Amoled}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -81,7 +81,7 @@
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
 
-    <FlyoutItem Title="Home" Icon="icon_about.png">
+    <FlyoutItem Title="Home" Icon="icon_about.xml">
         <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" Route="AboutPage" />
     </FlyoutItem>
     <FlyoutItem Title="Notes" Icon="files.png">
@@ -90,14 +90,14 @@
     <FlyoutItem Title="Calendar" Icon="calendar_checkmark_line.png">
         <ShellContent ContentTemplate="{DataTemplate views:Calendar}" Route="Calendar" />
     </FlyoutItem>
-    <FlyoutItem Title="Notifications" Icon="notification_alert.png">
-        <ShellContent Route="" />
+    <FlyoutItem Title="Carousel" Icon="notification_alert.png">
+        <ShellContent ContentTemplate="{DataTemplate views:Carousel}" Route="Carousel" />
     </FlyoutItem>
     <FlyoutItem Title="Profile" Icon="user_profile.png">
         <!--<ShellContent ContentTemplate="{DataTemplate local:Profile}" Route="Profile" />-->
     </FlyoutItem>
     <FlyoutItem Title="Settings" Icon="setting.png">
-        <ShellContent Route="" />
+        <ShellContent ContentTemplate="{DataTemplate views:Settings}" Route="Settings" />
     </FlyoutItem>
 
     <!--  When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

@@ -31,9 +31,10 @@ namespace Diary.ViewModels
                 Preferences.Set("MyFirebaseRefreshToken", serializedcontnet);
                 Application.Current.MainPage = new AppShell();
             }
-            catch
+            catch(Exception e)
             {
-                await App.Current.MainPage.DisplayAlert("Alert", "Invalid useremail or password", "OK");
+                Console.WriteLine(e.ToString());
+                await App.Current.MainPage.DisplayAlert("Alert", e.ToString(), "OK");
             }
         }
     }

@@ -8,7 +8,9 @@
             <Thickness x:Key="PageMargin">22</Thickness>
 
             <!--  Colors  -->
-            <Color x:Key="AppPrimaryColor">#1976D2</Color>
+
+            <Color x:Key="AppPrimaryColor">#AEAEB2</Color>
+            <Color x:Key="AppPrimaryColorDark">#3A3A3C</Color>
             <Color x:Key="AppBackgroundColor">#c1dcf8</Color>
             <Color x:Key="PrimaryColor">Black</Color>
             <Color x:Key="SecondaryColor">White</Color>
@@ -58,9 +60,17 @@
             <Color x:Key="SystemGray5Dark">#2C2C2E</Color>
             <Color x:Key="SystemGray6Dark">#1C1C1E</Color>
 
+            <Color x:Key="Amoled">Black</Color>
+
             <!--  Implicit styles  -->
             <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource AppBackgroundColor}" />
+            </Style>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Dark={StaticResource AppPrimaryColorDark}, Light={StaticResource AppPrimaryColor}}" />
+                <Setter Property="BarTextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}" />
+                <Setter Property="BarBackground" Value="Black" />
             </Style>
 
             <Style x:Key="button_edits" TargetType="Button">
@@ -87,14 +97,14 @@
                 <Setter Property="Padding" Value="-7" />
                 <Setter Property="IsClippedToBounds" Value="True" />
             </Style>
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackground" Value="Black" />
-            </Style>
+
             <Style x:Key="BaseRefreshView" TargetType="RefreshView">
                 <Setter Property="RefreshColor" Value="{StaticResource SystemBlue}" />
             </Style>
 
             <Style x:Key="BaseLabel" TargetType="Label">
+
+                <Setter Property="FontFamily" Value="manrope" />
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}" />
             </Style>
 

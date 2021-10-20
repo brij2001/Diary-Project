@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Diary.Views.Carousel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
+                                      Light={StaticResource SystemGray4}}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="itemTemplate">
+                <Image Aspect="AspectFit" Source="{Binding Image}" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <carousel:SfCarousel
+            x:Name="carousel"
+            HeightRequest="400"
+            ItemHeight="300"
+            ItemTemplate="{StaticResource itemTemplate}"
+            ItemWidth="200"
+            ItemsSource="{Binding ImageCollection}"
+            ViewMode="Default"
+            WidthRequest="800" />
+    </ContentPage.Content>
+</ContentPage>

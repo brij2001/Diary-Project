@@ -38,7 +38,7 @@ namespace Diary.Views
                 var RefreshedContent = await authProvider.RefreshAuthAsync(savedfirebaseauth);
                 Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(RefreshedContent));
                 //Now lets grab user information
-                MyUserName.Text = savedfirebaseauth.User.Email;
+                MyUserName.Text = "Username: "+savedfirebaseauth.User.Email;
             }
             catch (Exception ex)
             {

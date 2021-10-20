@@ -11,15 +11,16 @@ namespace Diary
     {
         public AppShell()
         {
-            Routing.RegisterRoute("AuthMain", typeof(AuthMain)); 
+            
+            FingerPrint();
+
+            //InitializeComponent();
+            Routing.RegisterRoute("AuthMain", typeof(AuthMain));
             Routing.RegisterRoute("NotePage", typeof(NotePage));
             Routing.RegisterRoute("NoteEntryPage", typeof(NoteEntryPage));
             Routing.RegisterRoute("Register", typeof(Register));
-            //FingerPrint();
-
-            InitializeComponent();
-            
-
+            Routing.RegisterRoute("Settings", typeof(Settings));
+            Routing.RegisterRoute("Corousel", typeof(Carousel));
         }
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {

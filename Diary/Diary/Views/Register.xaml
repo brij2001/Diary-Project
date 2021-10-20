@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Register"
-    BackgroundColor="{StaticResource SystemGray4Dark}">
+    BackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
+                                      Light={StaticResource SystemGray4}}">
 
     <ContentPage.Content>
         <ScrollView>
@@ -14,24 +15,24 @@
                     FontSize="16"
                     Placeholder="Email"
                     PlaceholderColor="LightGray"
-                    Text="{Binding NewEmail}"
-                    TextColor="White" />
+                    Style="{StaticResource BaseLabel}"
+                    Text="{Binding NewEmail}" />
                 <Entry
                     x:Name="UserNewPassword"
                     FontSize="16"
                     IsPassword="True"
                     Placeholder="Password"
                     PlaceholderColor="LightGray"
-                    Text="{Binding NewPassword}"
-                    TextColor="White" />
+                    Style="{StaticResource BaseLabel}"
+                    Text="{Binding NewPassword}" />
                 <Entry
                     x:Name="confirmPasswordRegister"
                     FontSize="16"
                     IsPassword="True"
                     Placeholder="Confirm Password"
                     PlaceholderColor="LightGray"
-                    Text="{Binding ConfirmPassword}"
-                    TextColor="White" />
+                    Style="{StaticResource BaseLabel}"
+                    Text="{Binding ConfirmPassword}" />
                 <Button
                     BackgroundColor="Transparent"
                     BorderColor="White"
