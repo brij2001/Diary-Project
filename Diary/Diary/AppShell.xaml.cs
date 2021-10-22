@@ -22,10 +22,11 @@ namespace Diary
             Routing.RegisterRoute("Settings", typeof(Settings));
             Routing.RegisterRoute("Corousel", typeof(Carousel));
         }
-        private async void OnMenuItemClicked(object sender, EventArgs e)
+        private void OnMenuItemClicked(object sender, EventArgs e)
         {
             Preferences.Set("MyFirebaseRefreshToken", "");
-            await Shell.Current.GoToAsync("AuthMain");
+            App.Current.MainPage=new NavigationPage(new AuthMain());
+
         }
 
         public async void FingerPrint()

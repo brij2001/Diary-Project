@@ -10,11 +10,18 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="10,20,20,10">
+                <Image
+                    HeightRequest="400"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="GOLD_VARIANT.jpg"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="400" />
                 <Entry
                     x:Name="UserNewEmail"
                     FontSize="16"
                     Placeholder="Email"
-                    PlaceholderColor="LightGray"
+                    PlaceholderColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                                       Light={StaticResource TextColor}}"
                     Style="{StaticResource BaseLabel}"
                     Text="{Binding NewEmail}" />
                 <Entry
@@ -22,7 +29,8 @@
                     FontSize="16"
                     IsPassword="True"
                     Placeholder="Password"
-                    PlaceholderColor="LightGray"
+                    PlaceholderColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                                       Light={StaticResource TextColor}}"
                     Style="{StaticResource BaseLabel}"
                     Text="{Binding NewPassword}" />
                 <Entry
@@ -30,17 +38,16 @@
                     FontSize="16"
                     IsPassword="True"
                     Placeholder="Confirm Password"
-                    PlaceholderColor="LightGray"
+                    PlaceholderColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                                       Light={StaticResource TextColor}}"
                     Style="{StaticResource BaseLabel}"
                     Text="{Binding ConfirmPassword}" />
                 <Button
-                    BackgroundColor="Transparent"
                     BorderColor="White"
                     BorderWidth="1.5"
                     Command="{Binding RegisterCommand}"
                     CornerRadius="50"
                     Text="Register"
-                    TextColor="White"
                     WidthRequest="100" />
             </StackLayout>
         </ScrollView>

@@ -120,8 +120,8 @@
 
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="Black" HeightRequest="200">
-                <Image Aspect="AspectFill" Source="InstaGoalsLogo2.jpg" />
+            <Grid BackgroundColor="Black" HeightRequest="250">
+                <Image Aspect="AspectFit" Source="GOLD_VARIANT.jpg" />
             </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>

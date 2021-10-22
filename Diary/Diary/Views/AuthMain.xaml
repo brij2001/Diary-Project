@@ -6,7 +6,10 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Login"
-    BackgroundColor="{StaticResource Amoled}"
+    BackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
+                                      Light={StaticResource SystemGray4}}"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout
@@ -16,22 +19,24 @@
             <Image
                 HeightRequest="400"
                 HorizontalOptions="CenterAndExpand"
-                Source="InstaGoalsLogo2DarkGray.jpg"
+                Source="GOLD_VARIANT.jpg"
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="400" />
             <Entry
                 x:Name="loginUsernameEntry"
-                BackgroundColor="{StaticResource Amoled}"
                 Placeholder="E-Mail"
-                PlaceholderColor="LightGray"
+                PlaceholderColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                                   Light={StaticResource TextColor}}"
+                Style="{StaticResource BaseLabel}"
                 Text="{Binding Email}"
                 TextColor="White" />
             <Entry
                 x:Name="loginPasswordEntry"
-                BackgroundColor="{StaticResource Amoled}"
                 IsPassword="True"
                 Placeholder="Password"
-                PlaceholderColor="LightGray"
+                PlaceholderColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                                   Light={StaticResource TextColor}}"
+                Style="{StaticResource BaseLabel}"
                 Text="{Binding Password}"
                 TextColor="White" />
             <Button

@@ -33,6 +33,13 @@ namespace Diary.Data
                             .FirstOrDefaultAsync();
         }
 
+        public int GetNoteIdByTitleAsync(string title)
+        {
+            var note = database.Table<Note>().Where(i => i.Title == title).FirstAsync();
+            int id = 0;
+            return id;
+        }
+
         public Task<int> SaveNoteAsync(Note note)
         {
             if (note.ID != 0)//to update note
