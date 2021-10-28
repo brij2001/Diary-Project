@@ -39,7 +39,7 @@
             <Label
                 FontSize="16"
                 Style="{StaticResource BaseLabel}"
-                Text="Under guidance of Asst. Prof.Abhijeet Pawaskar" />
+                Text="Under guidance of Abhijeet Pawaskar" />
 
             <Button
                 BackgroundColor="{AppThemeBinding Dark={StaticResource SystemGray4Dark},

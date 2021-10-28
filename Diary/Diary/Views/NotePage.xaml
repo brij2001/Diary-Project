@@ -33,6 +33,7 @@
                 TranslationY="40" />
         </StackLayout>
         <RefreshView
+            Padding="0,10,0,0"
             x:DataType="viewmodels:NotePageViewModel"
             Command="{Binding OnLoad}"
             IsRefreshing="{Binding IsBusy, Mode=TwoWay}">

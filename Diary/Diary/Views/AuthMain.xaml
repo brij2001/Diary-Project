@@ -19,7 +19,7 @@
             <Image
                 HeightRequest="400"
                 HorizontalOptions="CenterAndExpand"
-                Source="GOLD_VARIANT.jpg"
+                Source="goldvariant.png"
                 VerticalOptions="CenterAndExpand"
                 WidthRequest="400" />
             <Entry

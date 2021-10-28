@@ -54,5 +54,7 @@
                 Text="Delete Image" />
         </Grid>
         <Label Text="Image" />
+        <Image 
+            Source="{Binding image}"/>
     </StackLayout>
 </ContentPage>

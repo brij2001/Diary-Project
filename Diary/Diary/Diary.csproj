@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Services\**" />
+    <Compile Remove="Views\Settings\**" />
     <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="Views\Settings\**" />
     <None Remove="Services\**" />
+    <None Remove="Views\Settings\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,9 +65,5 @@
     <EmbeddedResource Update="Views\Carousel.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Settings\" />
   </ItemGroup>
 </Project>

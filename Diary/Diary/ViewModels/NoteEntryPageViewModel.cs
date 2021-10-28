@@ -36,6 +36,7 @@ namespace Diary.ViewModels
         private string _TEXT;
         private DateTime _DATETIME;
         private string _IMAGE;
+ 
         public Note note = new Note();
         public DateTime datetime { get => _DATETIME; set => SetProperty(ref _DATETIME, value); }
         public string title { get => _TITLE; set => SetProperty(ref _TITLE, value); }
@@ -62,6 +63,9 @@ namespace Diary.ViewModels
                 text = note1.Text;
                 datetime = note1.Date;
                 image = note1.image;
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string photopath = Path.Combine(path, "imagesFolder", note1.image);
+                Console.Write(photopath);
             }
             catch (Exception)
             {
