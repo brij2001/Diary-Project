@@ -16,10 +16,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\Font Awesome 5 Brands-Regular-400.otf" />
+    <None Remove="Resources\Fonts\Font Awesome 5 Free-Regular-400.otf" />
+    <None Remove="Resources\Fonts\Font Awesome 5 Free-Solid-900.otf" />
     <None Remove="Resources\Fonts\Manrope-VariableFont_wght.ttf" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Font Awesome 5 Brands-Regular-400.otf" />
+    <EmbeddedResource Include="Resources\Fonts\Font Awesome 5 Free-Regular-400.otf" />
+    <EmbeddedResource Include="Resources\Fonts\Font Awesome 5 Free-Solid-900.otf" />
     <EmbeddedResource Include="Resources\Fonts\Manrope-VariableFont_wght.ttf" />
   </ItemGroup>
 
@@ -29,14 +35,14 @@
     <PackageReference Include="Plugin.Fingerprint" Version="2.1.4" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="19.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.3.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfSchedule" Version="19.3.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.3.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.3.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="19.3.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.3.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.3.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.3.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.3.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfSchedule" Version="19.3.0.47" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />  

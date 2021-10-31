@@ -134,6 +134,14 @@
                 TargetType="Label">
                 <Setter Property="FontSize" Value="Large" />
             </Style>
+            <Style x:Key="SettingsCard" TargetType="Frame">
+                <Setter Property="HasShadow" 
+                        Value="True"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Dark=#1C1C1E,
+                    Light=white}"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
