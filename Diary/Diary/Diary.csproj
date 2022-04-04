@@ -19,10 +19,7 @@
     <None Remove="Resources\Fonts\Font Awesome 5 Brands-Regular-400.otf" />
     <None Remove="Resources\Fonts\Font Awesome 5 Free-Regular-400.otf" />
     <None Remove="Resources\Fonts\Font Awesome 5 Free-Solid-900.otf" />
-<<<<<<< Updated upstream
     <None Remove="Resources\Fonts\Manrope-VariableFont_wght.ttf" />
-=======
->>>>>>> Stashed changes
   </ItemGroup>
 
   <ItemGroup>

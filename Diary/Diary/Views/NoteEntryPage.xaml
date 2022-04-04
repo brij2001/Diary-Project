@@ -53,12 +53,5 @@
                 Style="{StaticResource button_edits}"
                 Text="Delete Image" />
         </Grid>
-<<<<<<< Updated upstream
-        <Label Text="Image" />
-        <Image 
-            Source="{Binding image}"/>
-=======
-        
->>>>>>> Stashed changes
     </StackLayout>
 </ContentPage>
