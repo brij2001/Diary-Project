@@ -87,13 +87,13 @@
     <FlyoutItem Title="Notes" Icon="files.png">
         <ShellContent ContentTemplate="{DataTemplate views:NotePage}" Route="ItemsPage" />
     </FlyoutItem>
-    <FlyoutItem Title="Calendar" Icon="calendar_checkmark_line.png">
+    <FlyoutItem Title="Calendar (Coming Soon)" Icon="calendar_checkmark_line.png">
         <ShellContent ContentTemplate="{DataTemplate views:Calendar}" Route="Calendar" />
     </FlyoutItem>
     <FlyoutItem Title="Carousel" Icon="notification_alert.png">
         <ShellContent ContentTemplate="{DataTemplate views:Carousel}" Route="Carousel" />
     </FlyoutItem>
-    <FlyoutItem Title="Profile" Icon="user_profile.png">
+    <FlyoutItem Title="Profile (Coming Soon)" Icon="user_profile.png">
         <!--<ShellContent ContentTemplate="{DataTemplate local:Profile}" Route="Profile" />-->
     </FlyoutItem>
     <FlyoutItem Title="Settings" Icon="setting.png">

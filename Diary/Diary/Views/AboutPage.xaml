@@ -35,8 +35,9 @@
             <Label
                 FontSize="Medium"
                 Style="{StaticResource BaseLabel}"
-                Text="This app is made as a Project by:&#x0a;Brij Mangukiya&#x0a;Pratham Kothari&#x0a;Prathik Shetty&#x0a;" />
+                Text="This app is made as a Project by:&#x0a;Brij Mangukiya&#x0a;Prathik Shetty&#x0a;" />
             <Label
+                
                 FontSize="16"
                 Style="{StaticResource BaseLabel}"
                 Text="Under guidance of Abhijeet Pawaskar" />
@@ -45,7 +46,9 @@
                 BackgroundColor="{AppThemeBinding Dark={StaticResource SystemGray4Dark},
                                                   Light={StaticResource SystemGray4}}"
                 Clicked="OnButtonClicked"
-                Text="Learn more" />
+                Text="Learn more"
+                TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                            Light={StaticResource TextColor}}" />
         </StackLayout>
         <StackLayout
             Grid.Row="3"
@@ -62,7 +65,8 @@
                                                   Light={StaticResource SystemGray4}}"
                 Clicked="Logout_Clicked"
                 Text="Logout"
-                TextColor="White" />
+                TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},
+                                            Light={StaticResource TextColor}}" />
         </StackLayout>
     </Grid>
 </ContentPage>

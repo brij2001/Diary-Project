@@ -135,12 +135,18 @@
                 <Setter Property="FontSize" Value="Large" />
             </Style>
             <Style x:Key="SettingsCard" TargetType="Frame">
+<<<<<<< Updated upstream
                 <Setter Property="HasShadow" 
                         Value="True"/>
                 <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="BackgroundColor"
                         Value="{AppThemeBinding Dark=#1C1C1E,
                     Light=white}"/>
+=======
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=#1C1C1E, Light=white}" />
+>>>>>>> Stashed changes
             </Style>
         </ResourceDictionary>
     </Application.Resources>

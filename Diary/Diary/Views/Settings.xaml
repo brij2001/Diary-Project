@@ -3,6 +3,7 @@
     x:Class="Diary.Views.Settings"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontAwesome="clr-namespace:FontAwesome"
     Title="Settings"
     xmlns:fontAwesome="clr-namespace:FontAwesome"
     BackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
@@ -20,7 +21,11 @@
                                                       Light={StaticResource LightRadioButtonColor}}"
                     BorderColor="{AppThemeBinding Dark={StaticResource DarkRadioButtonColor},
                                                   Light={StaticResource LightRadioButtonColor}}"
+<<<<<<< Updated upstream
                     CornerRadius="8"
+=======
+                    CornerRadius="15"
+>>>>>>> Stashed changes
                     HasShadow="True"
                     HeightRequest="80"
                     HorizontalOptions="Start"
