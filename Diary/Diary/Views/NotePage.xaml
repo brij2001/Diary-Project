@@ -3,12 +3,12 @@
     x:Class="Diary.Views.NotePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontAwesome="clr-namespace:FontAwesome"
     xmlns:local="clr-namespace:Diary.Views"
     xmlns:model="clr-namespace:Diary.Models"
     xmlns:viewmodels="clr-namespace:Diary.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="Diary"
-
     x:DataType="viewmodels:NotePageViewModel"
     BackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
                                       Light={StaticResource SystemGray4}}">
@@ -91,10 +91,30 @@
                                             Style="{StaticResource BaseLabel}"
                                             Text="{Binding Text}" />
                                         <Label
-                                            FontSize="12"
+                                            FontSize="15"
                                             Style="{StaticResource BaseLabel}"
                                             Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
                                             TextColor="Silver" />
+                                        <StackLayout>
+                                            <Image
+                                                HorizontalOptions="End"
+                                                Scale="0.75"
+                                                ScaleX="1"
+                                                Source="{FontImage FontFamily=FAsolid,
+                                                                   Glyph={x:Static fontAwesome:FontAwesomeIcons.ShareAlt},
+                                                                   Color={AppThemeBinding Dark={StaticResource TextColorDark},
+                                                                                          Light={StaticResource TextColor}}}" />
+                                            <Label
+                                                AnchorX="0.5"
+                                                AnchorY="0.5"
+                                                FontSize="11.2"
+                                                HorizontalOptions="End"
+                                                Style="{StaticResource LabelSmall}"
+                                                Text="Share"
+                                                OnCommand=""/>
+                                        </StackLayout>
+
+
                                     </StackLayout>
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer

@@ -21,6 +21,7 @@
                 ViewMode="MonthView">
                 <sf:SfCalendar.MonthViewSettings>
                     <sf:MonthViewSettings
+                        
                         CurrentMonthBackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
                                                                       Light=White}"
                         CurrentMonthTextColor="{AppThemeBinding Dark={StaticResource TextColorDark},

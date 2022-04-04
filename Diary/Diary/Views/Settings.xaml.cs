@@ -60,11 +60,9 @@ namespace Diary.Views
                     break;
             }
 
-<<<<<<< Updated upstream
+
           TheTheme.SetTheme();
-=======
-            TheTheme.SetTheme();
->>>>>>> Stashed changes
+
         }
     }
 }
