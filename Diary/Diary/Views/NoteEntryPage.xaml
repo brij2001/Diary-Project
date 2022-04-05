@@ -53,5 +53,6 @@
                 Style="{StaticResource button_edits}"
                 Text="Delete Image" />
         </Grid>
+        <Image Aspect="AspectFill" Source="{Binding ShowImage}" />
     </StackLayout>
 </ContentPage>

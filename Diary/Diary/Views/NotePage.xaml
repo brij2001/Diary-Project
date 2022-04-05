@@ -95,24 +95,7 @@
                                             Style="{StaticResource BaseLabel}"
                                             Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy} at {0:hh\\:mm}'}"
                                             TextColor="Silver" />
-                                        <StackLayout>
-                                            <Image
-                                                HorizontalOptions="End"
-                                                Scale="0.75"
-                                                ScaleX="1"
-                                                Source="{FontImage FontFamily=FAsolid,
-                                                                   Glyph={x:Static fontAwesome:FontAwesomeIcons.ShareAlt},
-                                                                   Color={AppThemeBinding Dark={StaticResource TextColorDark},
-                                                                                          Light={StaticResource TextColor}}}" />
-                                            <Label
-                                                AnchorX="0.5"
-                                                AnchorY="0.5"
-                                                FontSize="11.2"
-                                                HorizontalOptions="End"
-                                                Style="{StaticResource LabelSmall}"
-                                                Text="Share"
-                                                OnCommand=""/>
-                                        </StackLayout>
+                                        
 
 
                                     </StackLayout>

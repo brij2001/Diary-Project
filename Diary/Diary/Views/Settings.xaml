@@ -4,7 +4,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:fontAwesome="clr-namespace:FontAwesome"
+    xmlns:viewmodels="clr-namespace:Diary.Views"
     Title="Settings"
+    x:DataType="viewmodels:Settings"
     BackgroundColor="{AppThemeBinding Dark={StaticResource Amoled},
                                       Light={StaticResource SystemGray4}}">
     <ContentPage.Resources>
@@ -152,6 +154,17 @@
                                 </StackLayout>
                             </RadioButton.Content>
                         </RadioButton>
+                    </Grid>
+                </Frame>
+                <Label Style="{DynamicResource LabelMedium}" Text="Backup" />
+                <Frame Style="{DynamicResource SettingsCard}">
+                    <Grid>
+                        <Button
+                            Clicked="OnBackupButton"
+                            HorizontalOptions="FillAndExpand"
+                            Style="{DynamicResource BButton}"
+                            Text="Backup" />
+
                     </Grid>
                 </Frame>
             </StackLayout>

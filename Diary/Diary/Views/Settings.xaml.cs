@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Diary.Helpers;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,8 +15,11 @@ namespace Diary.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Settings : ContentPage
     {
+
+
         public Settings()
         {
+
             InitializeComponent();
             switch (SettingsHelper.Theme)
             {
@@ -28,6 +34,27 @@ namespace Diary.Views
                     break;
             }
         }
+
+        private void OnRestoreButton(object sender, EventArgs args)
+        {
+            Console.WriteLine("restore pressed");
+            //throw new NotImplementedException();
+        }
+
+        private async void OnBackupButton(object sender, EventArgs args)
+        {
+
+            var fileStream = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream("/data/user/0/com.project.diary/files/.local/share/Notes.db3");
+            Console.WriteLine("Backup pressed");
+            //Console.WriteLine(db);
+            var cacheFile = Path.Combine(FileSystem.CacheDirectory, "SampleDoc.pdf");
+
+            await Share.RequestAsync(new ShareFileRequest {
+                Title = "Backup",
+                File = new ShareFile("/data/user/0/com.project.diary/files/.local/share/Notes.db3")
+        });
+        }
+
         bool loaded;
         protected override void OnAppearing()
         {
@@ -64,5 +91,6 @@ namespace Diary.Views
           TheTheme.SetTheme();
 
         }
+
     }
 }

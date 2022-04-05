@@ -36,7 +36,8 @@ namespace Diary.ViewModels
         private string _TEXT;
         private DateTime _DATETIME;
         private string _IMAGE;
- 
+        private ImageSource imageshow;
+
         public Note note = new Note();
         public DateTime datetime { get => _DATETIME; set => SetProperty(ref _DATETIME, value); }
         public string title { get => _TITLE; set => SetProperty(ref _TITLE, value); }
@@ -52,7 +53,15 @@ namespace Diary.ViewModels
                 LoadNote(value);
             }
         }
-
+        public ImageSource ShowImage
+        {
+            get { return this.imageshow; }
+            set
+            {
+                this.imageshow = value;
+                //this.RaisePropertyChanged("ContactImage");
+            }
+        }
         private async void LoadNote(string itemId)
         {
             try
@@ -65,7 +74,8 @@ namespace Diary.ViewModels
                 image = note1.image;
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
                 string photopath = Path.Combine(path, "imagesFolder", note1.image);
-                Console.Write(photopath);
+                Console.WriteLine(photopath);
+                ShowImage = ImageSource.FromResource(photopath);
             }
             catch (Exception)
             {
